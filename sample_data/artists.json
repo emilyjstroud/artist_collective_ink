@@ -3,9 +3,9 @@
     "artistName" : "s. Huttenmaier",
     "artistLocation" : "OKC",
     "shopName" : "Keepsake Tattoo",
-    "ig_handle" : "@helloWorld",
+    "igHandle" : "@helloWorld",
     "image" : "",
-    "shopId" : 1,
+    "shopId" : "-Shop1",
     "firebaseKey" : "-Art1",
     "uid" : ""
   },
@@ -13,9 +13,9 @@
     "artistName" : "John Barrett",
     "artistLocation" : "ATL",
     "shopName" : "Messenger Tattoo",
-    "ig_handle" : "@yogiB",
+    "igHandle" : "@yogiB",
     "image" : "",
-    "shopId" : 2,
+    "shopId" : "-Shop2",
     "firebaseKey" : "-Art2",
     "uid" : ""
   },
@@ -23,9 +23,9 @@
     "artistName" : "Kirk George",
     "artistLocation" : "Nashville",
     "shopName" : "Island Tattoo",
-    "ig_handle" : "@helloKirk",
+    "igHandle" : "@helloKirk",
     "image" : "",
-    "shopId" : 3,
+    "shopId" : "-Shop3",
     "firebaseKey" : "-Art3",
     "uid" : ""
   },
@@ -33,9 +33,9 @@
     "artistName" : "Zack Deaton",
     "artistLocation" : "Charlotte",
     "shopName" : "Made To Last Tattoo",
-    "ig_handle" : "@zackd",
+    "igHandle" : "@zackd",
     "image" : "",
-    "shopId" : 4,
+    "shopId" : "-Shop4",
     "firebaseKey" : "-Art4",
     "uid" : ""
   }
