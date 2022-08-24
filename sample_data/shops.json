@@ -1,0 +1,34 @@
+{
+  "-Shop1" : {
+    "shopName" : "Keepsake Tattoo",
+    "shopLocation" : "OKC",
+    "website" : "www.keepsaketatt.com",
+    "image" : "",
+    "firebaseKey" : "-Shop1",
+    "uid" : ""
+  },
+  "-Shop2" : {
+    "shopName" : "Messenger Tattoo",
+    "shopLocation" : "ATL",
+    "website" : "www.messengertatt.com",
+    "image" : "",
+    "firebaseKey" : "-Shop2",
+    "uid" : ""
+  },
+  "-Shop3" : {
+    "shopName" : "Island Tattoo",
+    "shopLocation" : "Nashville",
+    "website" : "www.islandtatt.com",
+    "image" : "",
+    "firebaseKey" : "-Shop3",
+    "uid" : ""
+  },
+  "-Shop4" : {
+    "shopName" : "Made To Last Tattoo",
+    "shopLocation" : "Charlotte",
+    "website" : "www.mtltatt.com",
+    "image" : "",
+    "firebaseKey" : "-Shop4",
+    "uid" : ""
+  }
+}
