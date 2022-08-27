@@ -5,7 +5,7 @@ const dbUrl = clientCredentials.databaseURL;
 
 // GET SHOPS
 const getShops = (uid) => new Promise((resolve, reject) => {
-  axios.get(`${dbUrl}/shops.json?orderBy="uid"&equalTo=${uid}`)
+  axios.get(`${dbUrl}/shops.json?orderBy="uid"&equalTo="${uid}"`)
     .then((response) => {
       if (response.data) {
         resolve(Object.values(response.data));

@@ -5,7 +5,7 @@ const dbUrl = clientCredentials.databaseURL;
 
 // GET ALL ARTISTS
 const getArtists = (uid) => new Promise((resolve, reject) => {
-  axios.get(`${dbUrl}/artists.json?orderBy="uid"&equalTo=${uid}`)
+  axios.get(`${dbUrl}/artists.json?orderBy="uid"&equalTo="${uid}"`)
     .then((response) => {
       if (response.data) {
         resolve(Object.values(response.data));

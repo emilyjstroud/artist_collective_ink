@@ -38,11 +38,11 @@ function ArtistForm({ obj }) {
     e.preventDefault();
     if (obj.firebaseKey) {
       updateArtist(artistFormInput)
-        .then(() => router.push('/shop'));
+        .then(() => router.push('/artist'));
     } else {
       const payload = { ...artistFormInput, uid: user.uid };
       createArtist(payload).then(() => {
-        router.push('/shop');
+        router.push('/artist');
       });
     }
   };
