@@ -1,7 +1,7 @@
 import React from 'react';
 import PropTypes from 'prop-types';
-import { Card } from 'react-bootstrap';
-import { Button } from 'bootstrap';
+import Card from 'react-bootstrap/Card';
+import Button from 'react-bootstrap/Button';
 import Link from 'next/link';
 
 function ArtistCard({ artistObj, onUpdate }) {

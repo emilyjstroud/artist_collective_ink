@@ -26,7 +26,7 @@ export default function NavBar() {
               </Link>
             </li>
             <li className="nav-item">
-              <Link passHref href="/">
+              <Link passHref href="/artist">
                 <a className="nav-link">
                   Artists
                 </a>

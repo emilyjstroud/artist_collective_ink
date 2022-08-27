@@ -22,8 +22,10 @@ function ArtistPage() {
       <h1>Meet the Artists</h1>
       <div className="d-flex flex-wrap flex-row">
         {
-        artists.map((artist) => <ArtistCard key={artist.firebaseKey} artistObj={artist} onUpdate={getAllArtists} />)
-        }
+        artists.map((artist) => (
+          <ArtistCard key={artist.firebaseKey} artistObj={artist} onUpdate={getAllArtists} />
+        ))
+}
       </div>
     </div>
   );

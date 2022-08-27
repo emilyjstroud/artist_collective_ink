@@ -20,8 +20,8 @@ const getArtists = (uid) => new Promise((resolve, reject) => {
 const createArtist = (artistObj) => new Promise((resolve, reject) => {
   axios.post(`${dbUrl}/artists.json`, artistObj)
     .then((response) => {
-      const payload = { firebaseKey: response.data.artistName };
-      axios.patch(`${dbUrl}/artists/${response.data.artistName}.json`, payload)
+      const payload = { firebaseKey: response.data.name };
+      axios.patch(`${dbUrl}/artists/${response.data.name}.json`, payload)
         .then(resolve);
     }).catch(reject);
 });

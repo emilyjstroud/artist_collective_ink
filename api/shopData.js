@@ -20,8 +20,8 @@ const getShops = (uid) => new Promise((resolve, reject) => {
 const createShop = (shopObj) => new Promise((resolve, reject) => {
   axios.post(`${dbUrl}/shops.json`, shopObj)
     .then((response) => {
-      const payload = { firebaseKey: response.data.shopName };
-      axios.patch(`${dbUrl}/shops/${response.data.shopName}.json`, payload)
+      const payload = { firebaseKey: response.data.name };
+      axios.patch(`${dbUrl}/shops/${response.data.name}.json`, payload)
         .then(resolve);
     }).catch(reject);
 });
