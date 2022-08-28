@@ -49,7 +49,7 @@ const getSingleShop = (firebaseKey) => new Promise((resolve, reject) => {
 
 // GET SHOP'S ARTISTS
 const getShopArtists = (shopId) => new Promise((resolve, reject) => {
-  axios.get(`${dbUrl}/artists.json?orderBy="shopId"&equalTo=${shopId}`)
+  axios.get(`${dbUrl}/artists.json?orderBy="shopId"&equalTo="${shopId}"`)
     .then((response) => resolve(response.data))
     .catch((error) => reject(error));
 });

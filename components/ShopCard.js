@@ -1,13 +1,14 @@
 import React from 'react';
 import PropTypes from 'prop-types';
-import { Card, Button } from 'react-bootstrap';
+import Card from 'react-bootstrap/Card';
+import Button from 'react-bootstrap/Button';
 import Link from 'next/link';
-import { deleteShopArtists } from '../api/mergedData';
+import { deleteShop } from '../api/shopData';
 
 function ShopCard({ shopObj, onUpdate }) {
   const deleteThisShop = () => {
     if (window.confirm(`Delete ${shopObj.shopName}?`)) {
-      deleteShopArtists(shopObj.firebaseKey).then(() => onUpdate());
+      deleteShop(shopObj.firebaseKey).then(() => onUpdate());
     }
   };
 

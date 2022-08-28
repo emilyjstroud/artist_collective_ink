@@ -3,11 +3,12 @@ import PropTypes from 'prop-types';
 import Card from 'react-bootstrap/Card';
 import Button from 'react-bootstrap/Button';
 import Link from 'next/link';
+import { deleteArtist } from '../api/artistData';
 
 function ArtistCard({ artistObj, onUpdate }) {
   const deleteThisArtist = () => {
     if (window.confirm(`Delete ${artistObj.artistName}?`)) {
-      deleteThisArtist(artistObj.firebaseKey).then(() => onUpdate());
+      deleteArtist(artistObj.firebaseKey).then(() => onUpdate());
     }
   };
   return (

@@ -1,32 +1,32 @@
-// import React, { useEffect, useState } from 'react';
-// import { getArtists } from '../api/artistData';
-// import { useAuth } from '../utils/context/authContext';
-// import ArtistCard from '../components/ArtistCard';
+import React, { useEffect, useState } from 'react';
+import { useAuth } from '../utils/context/authContext';
+import ShopCard from '../components/ShopCard';
+import { getShops } from '../api/shopData';
 
-// function ShopPage() {
-//   const [artists, setArtists] = useState([]);
+function ShopPage() {
+  const [shops, setShops] = useState([]);
 
-//   const { user } = useAuth();
+  const { user } = useAuth();
 
-//   const getAllArtists = () => {
-//     getArtists(user.uid).then(setArtists);
-//   };
+  const getAllShops = () => {
+    getShops(user.uid).then(setShops);
+  };
 
-//   useEffect(() => {
-//     getAllArtists();
-//   }, [user]);
+  useEffect(() => {
+    getAllShops();
+  }, [user]);
 
-//   return (
-//     <div className="d-flex flex-wrap">
-//       <title>Artist Collective Ink</title>
-//       <h1>Meet the Artists</h1>
-//       <div className="d-flex flex-wrap flex-row">
-//         {
-//         artists.map((artist) => <ArtistCard key={artist.firebaseKey} artistObj={artist} onUpdate={getAllArtists} />)
-//         }
-//       </div>
-//     </div>
-//   );
-// }
+  return (
+    <div className="d-flex flex-wrap">
+      <title>Artist Collective Ink</title>
+      <h1>Tour the Shops</h1>
+      <div className="d-flex flex-wrap flex-row">
+        {
+        shops.map((shop) => <ShopCard key={shop.firebaseKey} shopObj={shop} onUpdate={getShops} />)
+        }
+      </div>
+    </div>
+  );
+}
 
-// export default ShopPage;
+export default ShopPage;

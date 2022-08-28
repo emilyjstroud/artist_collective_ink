@@ -1,11 +1,11 @@
 import { deleteArtist, getSingleArtist } from './artistData';
-import getShopArtists, { getSingleShop, deleteShop } from './shopData';
+import { getShopArtists, getSingleShop, deleteShop } from './shopData';
 
 // VIEW ARTIST DETAILS
 const viewArtistDetails = (artistFirebaseKey) => new Promise((resolve, reject) => {
   getSingleArtist(artistFirebaseKey)
     .then((artistObj) => {
-      getSingleArtist(artistObj.shopId)
+      getSingleArtist(artistObj.firebaseKey)
         .then((shopObj) => {
           resolve({ shopObj, ...artistObj });
         });
