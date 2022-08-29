@@ -25,6 +25,20 @@ export default function NavBar() {
                 </a>
               </Link>
             </li>
+            <li className="nav-item">
+              <Link passHref href="/artist">
+                <a className="nav-link">
+                  Artists
+                </a>
+              </Link>
+            </li>
+            <li className="nav-item">
+              <Link passHref href="/shop">
+                <a className="nav-link">
+                  Shops
+                </a>
+              </Link>
+            </li>
             <button type="button" className="btn btn-danger" onClick={signOut}>
               Sign Out
             </button>
