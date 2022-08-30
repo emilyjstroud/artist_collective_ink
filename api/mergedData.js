@@ -20,6 +20,14 @@ const viewShopDetails = (shopFirebaseKey) => new Promise((resolve, reject) => {
     }).catch((error) => reject(error));
 });
 
+// VIEW SHOP ARTISTS
+// const viewShopArtists = () => new Promise((resolve, reject) => {
+//   getSingleShop(shopFirebaseKey)
+//   .then((shopObj) => {
+//     getSingleShop(shopObj.firebaseKey)
+//   })
+// })
+
 // DELETE SHOP ARTISTS
 const deleteShopArtists = (shopId) => new Promise((resolve, reject) => {
   getShopArtists(shopId).then((artistsArray) => {
