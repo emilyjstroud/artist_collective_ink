@@ -20,10 +20,7 @@ function ShopCard({ shopObj, onUpdate }) {
         <p>Location: {shopObj.shopLocation}</p>
         <p>Website: {shopObj.website}</p>
         <Link href={`/shop/${shopObj.firebaseKey}`} passHref>
-          <Button variant="primary" className="m-2">Shop Details</Button>
-        </Link>
-        <Link href={`/artist/${shopObj.shopId}`} passHref>
-          <Button variant="primary" className="m-2">Shop Artists</Button>
+          <Button variant="primary" className="m-2">View Shop Details</Button>
         </Link>
         <Link href={`/shop/edit/${shopObj.firebaseKey}`} passHref>
           <Button variant="info">Edit Info</Button>
