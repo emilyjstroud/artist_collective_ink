@@ -6,7 +6,7 @@ import Button from 'react-bootstrap/Button';
 import PropTypes from 'prop-types';
 import { useAuth } from '../../utils/context/authContext';
 import { createArtist, updateArtist } from '../../api/artistData';
-import { getShops } from '../../api/shopData';
+import { getShops, getSingleShop } from '../../api/shopData';
 
 const initialState = {
   artistName: '',
@@ -21,6 +21,7 @@ const initialState = {
 function ArtistForm({ obj }) {
   const [artistFormInput, setArtistFormInput] = useState(initialState);
   const [shops, setShops] = useState([]);
+  const [artists, setArtists] = useState([]);
 
   const router = useRouter();
 
@@ -28,6 +29,7 @@ function ArtistForm({ obj }) {
 
   useEffect(() => {
     getShops(user.uid).then(setShops);
+    getSingleShop(artists).then(setArtists);
     if (obj.firebaseKey) setArtistFormInput(obj);
   }, [obj, user]);
 
@@ -78,7 +80,7 @@ function ArtistForm({ obj }) {
           className="mb-3"
           required
         >
-          <option value="">Select a Shop</option>
+          <option value="default" disabled>Select a Shop</option>
           {
             shops.map((shop) => (
               <option
