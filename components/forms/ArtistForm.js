@@ -43,7 +43,7 @@ function ArtistForm({ obj }) {
     e.preventDefault();
     if (obj.firebaseKey) {
       updateArtist(artistFormInput)
-        .then(() => router.push('/artist'));
+        .then(() => router.push(`/artist/${obj.firebaseKey}`));
     } else {
       const payload = { ...artistFormInput, uid: user.uid };
       createArtist(payload).then(() => {
@@ -83,8 +83,8 @@ function ArtistForm({ obj }) {
             shops.map((shop) => (
               <option
                 key={shop.firebaseKey}
-                value={shop.firebaseKey}
-                selected={obj.shopId === shop.firebaseKey}
+                value={shop.shopName}
+                selected={shop.firebaseKey === obj.shopId}
               >
                 {shop.shopName}
               </option>
