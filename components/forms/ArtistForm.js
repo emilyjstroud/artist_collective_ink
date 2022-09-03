@@ -6,7 +6,7 @@ import Button from 'react-bootstrap/Button';
 import PropTypes from 'prop-types';
 import { useAuth } from '../../utils/context/authContext';
 import { createArtist, updateArtist } from '../../api/artistData';
-import { getShops, getSingleShop } from '../../api/shopData';
+import { getShops } from '../../api/shopData';
 
 const initialState = {
   artistName: '',
@@ -21,7 +21,7 @@ const initialState = {
 function ArtistForm({ obj }) {
   const [artistFormInput, setArtistFormInput] = useState(initialState);
   const [shops, setShops] = useState([]);
-  const [artists, setArtists] = useState([]);
+  // const [artists, setArtists] = useState([]);
 
   const router = useRouter();
 
@@ -29,7 +29,7 @@ function ArtistForm({ obj }) {
 
   useEffect(() => {
     getShops(user.uid).then(setShops);
-    getSingleShop(artists).then(setArtists);
+    // getSingleShop(artists).then(setArtists);
     if (obj.firebaseKey) setArtistFormInput(obj);
   }, [obj, user]);
 
@@ -75,17 +75,18 @@ function ArtistForm({ obj }) {
       <FloatingLabel controlId="floatingSelect" label="Shop">
         <Form.Select
           aria-label="Shop"
-          name="shopName"
+          name="shopId"
           onChange={handleChange}
           className="mb-3"
+          // value={artistFormInput.shopId}
           required
         >
-          <option value="default" disabled>Select a Shop</option>
+          <option value="">Select a Shop</option>
           {
             shops.map((shop) => (
               <option
                 key={shop.firebaseKey}
-                value={shop.shopName}
+                value={shop.firebaseKey}
                 selected={shop.firebaseKey === obj.shopId}
               >
                 {shop.shopName}
