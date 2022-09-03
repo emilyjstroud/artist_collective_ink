@@ -1,7 +1,7 @@
 import React, { useEffect, useState } from 'react';
 import Link from 'next/link';
 import Button from 'react-bootstrap/Button';
-import { getArtists } from '../api/artistData';
+import { getArtistsWithShop } from '../api/mergedData';
 import { useAuth } from '../utils/context/authContext';
 import ArtistCard from '../components/ArtistCard';
 
@@ -11,7 +11,7 @@ function ArtistPage() {
   const { user } = useAuth();
 
   const getAllArtists = () => {
-    getArtists(user.uid).then(setArtists);
+    getArtistsWithShop(user.uid).then(setArtists);
   };
 
   useEffect(() => {

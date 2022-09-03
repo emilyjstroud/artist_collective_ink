@@ -6,6 +6,7 @@ import Button from 'react-bootstrap/Button';
 import PropTypes from 'prop-types';
 import { useAuth } from '../../utils/context/authContext';
 import { createArtist, updateArtist } from '../../api/artistData';
+import { getShops } from '../../api/shopData';
 
 const initialState = {
   artistName: '',
@@ -19,10 +20,16 @@ const initialState = {
 
 function ArtistForm({ obj }) {
   const [artistFormInput, setArtistFormInput] = useState(initialState);
+  const [shops, setShops] = useState([]);
+  // const [artists, setArtists] = useState([]);
+
   const router = useRouter();
+
   const { user } = useAuth();
 
   useEffect(() => {
+    getShops(user.uid).then(setShops);
+    // getSingleShop(artists).then(setArtists);
     if (obj.firebaseKey) setArtistFormInput(obj);
   }, [obj, user]);
 
@@ -38,7 +45,7 @@ function ArtistForm({ obj }) {
     e.preventDefault();
     if (obj.firebaseKey) {
       updateArtist(artistFormInput)
-        .then(() => router.push('/artist'));
+        .then(() => router.push(`/artist/${obj.firebaseKey}`));
     } else {
       const payload = { ...artistFormInput, uid: user.uid };
       createArtist(payload).then(() => {
@@ -56,15 +63,39 @@ function ArtistForm({ obj }) {
       <FloatingLabel controlId="floatingInput1" label="Artist Location" className="mb-3">
         <Form.Control type="text" placeholder="Artist's Location" name="artistLocation" value={artistFormInput.artistLocation} onChange={handleChange} required />
       </FloatingLabel>
-      <FloatingLabel controlId="floatingInput1" label="Shop Name" className="mb-3">
+      {/* <FloatingLabel controlId="floatingInput1" label="Shop Name" className="mb-3">
         <Form.Control type="text" placeholder="Shop Name" name="shopName" value={artistFormInput.shopName} onChange={handleChange} required />
-      </FloatingLabel>
+      </FloatingLabel> */}
       <FloatingLabel controlId="floatingInput1" label="Artist Instagram" className="mb-3">
         <Form.Control type="text" placeholder="Artist's Instagram" name="igHandle" value={artistFormInput.igHandle} onChange={handleChange} required />
       </FloatingLabel>
       <FloatingLabel controlId="floatingInput2" label="Artist Image" className="mb-3">
         <Form.Control type="url" placeholder="Enter an image url" name="image" value={artistFormInput.image} onChange={handleChange} required />
       </FloatingLabel>
+      <FloatingLabel controlId="floatingSelect" label="Shop">
+        <Form.Select
+          aria-label="Shop"
+          name="shopId"
+          onChange={handleChange}
+          className="mb-3"
+          value={artistFormInput.shopId}
+          required
+        >
+          <option value="">Select a Shop</option>
+          {
+            shops.map((shop) => (
+              <option
+                key={shop.firebaseKey}
+                value={shop.firebaseKey}
+                // selected={shop.firebaseKey === obj.shopId}
+              >
+                {shop.shopName}
+              </option>
+            ))
+          }
+        </Form.Select>
+      </FloatingLabel>
+
       <Button type="submit">{obj.firebaseKey ? 'Update' : 'Create'} Artist</Button>
     </Form>
   );

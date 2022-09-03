@@ -2,15 +2,20 @@
 import React, { useEffect, useState } from 'react';
 import { useRouter } from 'next/router';
 import { viewShopDetails } from '../../api/mergedData';
+import { getShopArtists } from '../../api/shopData';
+import ArtistCard from '../../components/ArtistCard';
 
 export default function ViewShop() {
   const [shopDetails, setShopDetails] = useState({});
+  const [artists, setArtists] = useState([]);
+
   const router = useRouter();
 
   const { firebaseKey } = router.query;
 
   useEffect(() => {
     viewShopDetails(firebaseKey).then(setShopDetails);
+    getShopArtists(firebaseKey).then(setArtists);
   }, [firebaseKey]);
 
   return (
@@ -26,6 +31,9 @@ export default function ViewShop() {
         <p>Website: {shopDetails.website}</p>
         <hr />
       </div>
+      { artists.map((artist) => (
+        <ArtistCard key={artist.firebaseKey} artistObj={artist} />
+      ))}
     </div>
   );
 }

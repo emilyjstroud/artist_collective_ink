@@ -20,7 +20,7 @@ function ShopCard({ shopObj, onUpdate }) {
         <p>Location: {shopObj.shopLocation}</p>
         <p>Website: {shopObj.website}</p>
         <Link href={`/shop/${shopObj.firebaseKey}`} passHref>
-          <Button variant="primary" className="m-2">View Details</Button>
+          <Button variant="primary" className="m-2">View Shop Details</Button>
         </Link>
         <Link href={`/shop/edit/${shopObj.firebaseKey}`} passHref>
           <Button variant="info">Edit Info</Button>
@@ -40,6 +40,7 @@ ShopCard.propTypes = {
     website: PropTypes.string,
     image: PropTypes.string,
     firebaseKey: PropTypes.string,
+    shopId: PropTypes.string,
   }).isRequired,
   onUpdate: PropTypes.func.isRequired,
 };
