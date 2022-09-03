@@ -1,4 +1,4 @@
-import { deleteArtist, getSingleArtist } from './artistData';
+import { deleteArtist, getArtists, getSingleArtist } from './artistData';
 import { getShopArtists, getSingleShop, deleteShop } from './shopData';
 
 // VIEW ARTIST DETAILS
@@ -31,8 +31,17 @@ const deleteShopArtists = (shopId) => new Promise((resolve, reject) => {
   }).catch((error) => reject(error));
 });
 
+// GET All ARISTS WITH SHOP NAME
+const getArtistsWithShop = (uid) => new Promise((resolve, reject) => {
+  getArtists(uid).then((artistsArray) => {
+    const artistPromises = artistsArray.map((artistObj) => getSingleShop(artistObj.shopId).then((singleShop) => ({ ...artistObj, shopName: singleShop.shopName })));
+    Promise.all(artistPromises).then(resolve);
+  }).catch((error) => reject(error));
+});
+
 export {
   viewArtistDetails,
   viewShopDetails,
   deleteShopArtists,
+  getArtistsWithShop,
 };

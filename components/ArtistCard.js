@@ -16,7 +16,7 @@ function ArtistCard({ artistObj, onUpdate }) {
       <Card.Img variant="top" src={artistObj.image} alt={artistObj.artistName} style={{ height: '400px' }} />
       <Card.Body>
         <Card.Title>Name: {artistObj.artistName}</Card.Title>
-        <p>Shop Name: {artistObj.shopId}</p>
+        <p>Shop Name: {artistObj.shopName}</p>
         <p>Location: {artistObj.artistLocation}</p>
         <p>Instagram: {artistObj.igHandle}</p>
         <Link href={`/artist/${artistObj.firebaseKey}`} passHref>
