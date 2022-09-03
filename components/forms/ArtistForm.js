@@ -78,7 +78,7 @@ function ArtistForm({ obj }) {
           name="shopId"
           onChange={handleChange}
           className="mb-3"
-          // value={artistFormInput.shopId}
+          value={artistFormInput.shopId}
           required
         >
           <option value="">Select a Shop</option>
@@ -87,7 +87,7 @@ function ArtistForm({ obj }) {
               <option
                 key={shop.firebaseKey}
                 value={shop.firebaseKey}
-                selected={shop.firebaseKey === obj.shopId}
+                // selected={shop.firebaseKey === obj.shopId}
               >
                 {shop.shopName}
               </option>
