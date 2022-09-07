@@ -1,7 +1,7 @@
 /* eslint-disable @next/next/no-img-element */
 import React, { useEffect, useState } from 'react';
 import { useRouter } from 'next/router';
-import { viewShopDetails } from '../../api/mergedData';
+import { getArtistsWithShop, viewShopDetails } from '../../api/mergedData';
 import { getShopArtists } from '../../api/shopData';
 import ArtistCard from '../../components/ArtistCard';
 
@@ -32,7 +32,7 @@ export default function ViewShop() {
         <hr />
       </div>
       { artists.map((artist) => (
-        <ArtistCard key={artist.firebaseKey} artistObj={artist} />
+        <ArtistCard key={artist.firebaseKey} artistObj={artist} onUpdate={getArtistsWithShop} />
       ))}
     </div>
   );
