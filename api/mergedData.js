@@ -34,7 +34,9 @@ const deleteShopArtists = (shopId) => new Promise((resolve, reject) => {
 // GET All ARISTS WITH SHOP NAME
 const getArtistsWithShop = (uid) => new Promise((resolve, reject) => {
   getArtists(uid).then((artistsArray) => {
-    const artistPromises = artistsArray.map((artistObj) => getSingleShop(artistObj.shopId).then((singleShop) => ({ ...artistObj, shopName: singleShop.shopName })));
+    const artistPromises = artistsArray.map((artistObj) => getSingleShop(artistObj.shopId).then((singleShop) => ({ ...artistObj, shopName: singleShop.shopName }),
+    console.warn(artistObj),
+    ));
     Promise.all(artistPromises).then(resolve);
   }).catch((error) => reject(error));
 });

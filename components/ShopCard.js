@@ -40,7 +40,7 @@ ShopCard.propTypes = {
     website: PropTypes.string,
     image: PropTypes.string,
     firebaseKey: PropTypes.string,
-    shopId: PropTypes.string,
+    // shopId: PropTypes.string,
   }).isRequired,
   onUpdate: PropTypes.func.isRequired,
 };

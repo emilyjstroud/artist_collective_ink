@@ -11,11 +11,12 @@ function ArtistCard({ artistObj, onUpdate }) {
       deleteArtist(artistObj.firebaseKey).then(() => onUpdate());
     }
   };
+
   return (
     <Card style={{ width: '18rem', margin: '10px' }}>
       <Card.Img variant="top" src={artistObj.image} alt={artistObj.artistName} style={{ height: '400px' }} />
       <Card.Body>
-        <Card.Title>Name: {artistObj.artistName}</Card.Title>
+        <Card.Title>{artistObj.artistName}</Card.Title>
         <p>Shop Name: {artistObj.shopName}</p>
         <p>Location: {artistObj.artistLocation}</p>
         <p>Instagram: {artistObj.igHandle}</p>

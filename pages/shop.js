@@ -28,7 +28,9 @@ function ShopPage() {
         <h1>Tour the Shops</h1>
         <div className="d-flex flex-wrap flex-row">
           {
-        shops.map((shop) => <ShopCard key={shop.firebaseKey} shopObj={shop} onUpdate={getShops} />)
+        shops.map((shop) => (
+          <ShopCard key={shop.firebaseKey} shopObj={shop} onUpdate={getShops} />
+        ))
         }
         </div>
       </div>

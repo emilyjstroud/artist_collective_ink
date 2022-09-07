@@ -29,7 +29,7 @@ function ArtistPage() {
         <div className="d-flex flex-wrap flex-row">
           {
         artists.map((artist) => (
-          <ArtistCard key={artist.firebaseKey} artistObj={artist} onUpdate={getAllArtists} />
+          <ArtistCard key={artist.firebaseKey} artistObj={artist} onUpdate={getArtistsWithShop} />
         ))
 }
         </div>
