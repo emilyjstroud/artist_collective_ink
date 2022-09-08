@@ -29,7 +29,7 @@ function ShopPage() {
         <div className="d-flex flex-wrap flex-row">
           {
         shops.map((shop) => (
-          <ShopCard key={shop.firebaseKey} shopObj={shop} onUpdate={getShops} />
+          <ShopCard key={shop.firebaseKey} shopObj={shop} onUpdate={getAllShops} />
         ))
         }
         </div>

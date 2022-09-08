@@ -1,9 +1,10 @@
-import React from 'react';
+import React, { useEffect } from 'react';
 import PropTypes from 'prop-types';
 import Card from 'react-bootstrap/Card';
 import Button from 'react-bootstrap/Button';
 import Link from 'next/link';
 import { deleteShopArtists } from '../api/mergedData';
+import { getShops } from '../api/shopData';
 // import { deleteShop } from '../api/shopData';
 
 function ShopCard({ shopObj, onUpdate }) {
@@ -14,6 +15,10 @@ function ShopCard({ shopObj, onUpdate }) {
       // deleteShopArtists();
     }
   };
+
+  useEffect(() => {
+    getShops();
+  }, []);
 
   return (
     <Card style={{ width: '18rem', margin: '10px' }}>

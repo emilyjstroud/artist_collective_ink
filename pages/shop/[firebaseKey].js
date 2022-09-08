@@ -13,9 +13,14 @@ export default function ViewShop() {
 
   const { firebaseKey } = router.query;
 
+  // const getArtistOnShopDetails = () => {
+  //   getArtistsWithShop().then();
+  // };
+
   useEffect(() => {
     viewShopDetails(firebaseKey).then(setShopDetails);
     getShopArtists(firebaseKey).then(setArtists);
+    // getArtistOnShopDetails();
   }, [firebaseKey]);
 
   return (
