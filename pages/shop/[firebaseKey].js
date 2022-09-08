@@ -21,7 +21,7 @@ export default function ViewShop() {
     viewShopDetails(firebaseKey).then(setShopDetails);
     getShopArtists(firebaseKey).then(setArtists);
     // getArtistOnShopDetails();
-  }, [firebaseKey]);
+  }, [firebaseKey, shopDetails]);
 
   return (
     <div className="mt-5 d-flex flex-wrap">

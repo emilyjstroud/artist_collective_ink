@@ -1,17 +1,29 @@
 /* eslint-disable @next/next/no-img-element */
 import { useRouter } from 'next/router';
 import React, { useEffect, useState } from 'react';
-import { viewArtistDetails } from '../../api/mergedData';
+// import { getSingleArtist } from '../../api/artistData';
+import { getArtistsWithShop, viewArtistDetails } from '../../api/mergedData';
+import { getShopArtists } from '../../api/shopData';
+import ArtistCard from '../../components/ArtistCard';
 
 export default function ViewArtist() {
   const [artistDetails, setArtistDetails] = useState({});
+  const [artists, setArtists] = useState([]);
+
   const router = useRouter();
 
   const { firebaseKey } = router.query;
 
   useEffect(() => {
     viewArtistDetails(firebaseKey).then(setArtistDetails);
-  }, [firebaseKey]);
+    getShopArtists(firebaseKey).then(setArtists);
+  }, [firebaseKey, artistDetails]);
+  // console.warn(viewArtistDetails);
+
+  // useEffect(() => {
+  //   getSingleArtist(firebaseKey).then(setArtistDetails);
+  // }, [firebaseKey]);
+  // console.warn(getSingleArtist);
 
   return (
     <div className="mt-5 d-flex flex-wrap">
@@ -27,6 +39,9 @@ export default function ViewArtist() {
         <p>Instagram: {artistDetails.igHandle}</p>
         <hr />
       </div>
+      { artists.map((artist) => (
+        <ArtistCard key={artist.firebaseKey} artistObj={artist} onUpdate={getArtistsWithShop} />
+      ))}
     </div>
   );
 }
