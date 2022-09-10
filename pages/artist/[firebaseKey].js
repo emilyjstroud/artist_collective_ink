@@ -1,8 +1,8 @@
 /* eslint-disable @next/next/no-img-element */
 import { useRouter } from 'next/router';
 import React, { useEffect, useState } from 'react';
-// import { getSingleArtist } from '../../api/artistData';
-import { getArtistsWithShop, viewArtistDetails } from '../../api/mergedData';
+import { getSingleArtist } from '../../api/artistData';
+import { viewArtistDetails } from '../../api/mergedData';
 import { getShopArtists } from '../../api/shopData';
 import ArtistCard from '../../components/ArtistCard';
 
@@ -35,12 +35,12 @@ export default function ViewArtist() {
           Name: {artistDetails.artistName}
         </h5>
         <p>Location: {artistDetails.artistLocation}</p>
-        <p>Shop Name: {artistDetails.shopName}</p>
+        <p>Shop Name: {artistDetails.shopId}</p>
         <p>Instagram: {artistDetails.igHandle}</p>
         <hr />
       </div>
       { artists.map((artist) => (
-        <ArtistCard key={artist.firebaseKey} artistObj={artist} onUpdate={getArtistsWithShop} />
+        <ArtistCard key={artist.firebaseKey} artistObj={artist} onUpdate={getSingleArtist} />
       ))}
     </div>
   );
