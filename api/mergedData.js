@@ -5,7 +5,7 @@ import { getShopArtists, getSingleShop, deleteShop } from './shopData';
 const viewArtistDetails = (artistFirebaseKey) => new Promise((resolve, reject) => {
   getSingleArtist(artistFirebaseKey)
     .then((artistObj) => {
-      getSingleArtist(artistObj.firebaseKey)
+      getSingleShop(artistObj.shopId)
         .then((shopObj) => {
           resolve({ shopObj, ...artistObj });
         });
@@ -44,4 +44,5 @@ export {
   viewShopDetails,
   deleteShopArtists,
   getArtistsWithShop,
+  // getArtistsByName,
 };
