@@ -11,7 +11,6 @@ import { getShops } from '../../api/shopData';
 const initialState = {
   artistName: '',
   artistLocation: '',
-  shopName: '',
   igHandle: '',
   image: '',
   shopId: '',
@@ -63,9 +62,6 @@ function ArtistForm({ obj }) {
       <FloatingLabel controlId="floatingInput1" label="Artist Location" className="mb-3">
         <Form.Control type="text" placeholder="Artist's Location" name="artistLocation" value={artistFormInput.artistLocation} onChange={handleChange} required />
       </FloatingLabel>
-      {/* <FloatingLabel controlId="floatingInput1" label="Shop Name" className="mb-3">
-        <Form.Control type="text" placeholder="Shop Name" name="shopName" value={artistFormInput.shopName} onChange={handleChange} required />
-      </FloatingLabel> */}
       <FloatingLabel controlId="floatingInput1" label="Artist Instagram" className="mb-3">
         <Form.Control type="text" placeholder="Artist's Instagram" name="igHandle" value={artistFormInput.igHandle} onChange={handleChange} required />
       </FloatingLabel>

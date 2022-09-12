@@ -5,13 +5,14 @@ import { viewArtistDetails } from '../../api/mergedData';
 
 export default function ViewArtist() {
   const [artistDetails, setArtistDetails] = useState({});
+
   const router = useRouter();
 
   const { firebaseKey } = router.query;
 
   useEffect(() => {
     viewArtistDetails(firebaseKey).then(setArtistDetails);
-  }, [firebaseKey]);
+  }, [firebaseKey, artistDetails]);
 
   return (
     <div className="mt-5 d-flex flex-wrap">
@@ -23,7 +24,7 @@ export default function ViewArtist() {
           Name: {artistDetails.artistName}
         </h5>
         <p>Location: {artistDetails.artistLocation}</p>
-        <p>Shop Name: {artistDetails.shopName}</p>
+        <p>Shop Name: {artistDetails.shopObj?.shopName}</p>
         <p>Instagram: {artistDetails.igHandle}</p>
         <hr />
       </div>
