@@ -4,14 +4,14 @@ import Form from 'react-bootstrap/Form';
 import InputGroup from 'react-bootstrap/InputGroup';
 // import Button from 'react-bootstrap/Button';
 
-function SearchBar({ shops, setFilteredShops }) {
+function ArtistSearchBar({ artists, setFilteredArtists }) {
   const [searchInput, setSearchInput] = useState('');
 
   const handleChange = (e) => {
     const { value } = e.target;
     setSearchInput(value);
-    const results = shops.filter((shop) => shop.shopName.toLowerCase().includes(value.toLowerCase()));
-    setFilteredShops(results);
+    const results = artists.filter((artist) => artist.artistName.toLowerCase().includes(value.toLowerCase()));
+    setFilteredArtists(results);
   };
 
   // const resetSearch = () => {
@@ -23,8 +23,8 @@ function SearchBar({ shops, setFilteredShops }) {
     <div>
       <InputGroup className="mb-3">
         <Form.Control
-          placeholder="Search Shops"
-          aria-label="Search Shops"
+          placeholder="Search Artists"
+          aria-label="Search Artists"
           value={searchInput}
           onChange={handleChange}
           aria-describedby="basic-addon2"
@@ -37,11 +37,11 @@ function SearchBar({ shops, setFilteredShops }) {
   );
 }
 
-SearchBar.propTypes = {
-  shops: PropTypes.arrayOf(PropTypes.shape({
-    shopName: PropTypes.string,
+ArtistSearchBar.propTypes = {
+  artists: PropTypes.arrayOf(PropTypes.shape({
+    artistName: PropTypes.string,
   })).isRequired,
-  setFilteredShops: PropTypes.func.isRequired,
+  setFilteredArtists: PropTypes.func.isRequired,
 };
 
-export default SearchBar;
+export default ArtistSearchBar;
