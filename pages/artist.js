@@ -5,14 +5,20 @@ import Button from 'react-bootstrap/Button';
 import { getArtistsWithShop } from '../api/mergedData';
 import { useAuth } from '../utils/context/authContext';
 import ArtistCard from '../components/ArtistCard';
+import ArtistSearchBar from '../components/ArtistSearch';
 
 function ArtistPage() {
   const [artists, setArtists] = useState([]);
+  const [filteredArtists, setFilteredArtists] = useState([]);
 
   const { user } = useAuth();
 
   const getAllArtists = () => {
-    getArtistsWithShop(user.uid).then(setArtists);
+    // getArtistsWithShop(user.uid).then(setArtists);
+    getArtistsWithShop(user.uid).then((artistArray) => {
+      setArtists(artistArray);
+      setFilteredArtists(artistArray);
+    });
   };
 
   useEffect(() => {
@@ -21,6 +27,7 @@ function ArtistPage() {
 
   return (
     <div>
+      <ArtistSearchBar artists={artists} setFilteredArtists={setFilteredArtists} />
       <Link href="/artist/new" passHref>
         <Button className="btn btn-danger">Add an Artist</Button>
       </Link>
@@ -29,7 +36,7 @@ function ArtistPage() {
         <h1>Meet the Artists</h1>
         <div className="d-flex flex-wrap flex-row">
           {
-        artists.map((artist) => (
+        filteredArtists.map((artist) => (
           <ArtistCard key={artist.firebaseKey} artistObj={artist} onUpdate={getAllArtists} />
         ))
 }
