@@ -1,3 +1,5 @@
+import Link from 'next/link';
+import { Button } from 'react-bootstrap';
 import { signOut } from '../utils/auth';
 import { useAuth } from '../utils/context/authContext';
 
@@ -14,11 +16,19 @@ function Home() {
         margin: '0 auto',
       }}
     >
-      <h1>Hello {user.displayName}! </h1>
-      <p>Click the button below to exit</p>
-      <button className="btn btn-danger btn-lg copy-btn" type="button" onClick={signOut}>
+      <title>Artist Collective Ink</title>
+      <h1 style={{ color: 'white' }}>Welcome {user.displayName}! </h1>
+      {/* <p style={{ color: 'white' }}>Click the button below to exit</p> */}
+      <Link href="/artist" passHref>
+        <Button variant="danger" className="m-2">Meet the Artists</Button>
+      </Link>
+      <Link href="/shop" passHref>
+        <Button variant="danger" className="m-2">Tour the Shops</Button>
+      </Link>
+      {/* <button className="btn btn-danger btn-lg copy-btn" type="button" onClick={signOut}>
         Sign Out
-      </button>
+      </button> */}
+      <Button variant="danger" className="m-2" onClick={signOut}>Sign Out</Button>
     </div>
   );
 }

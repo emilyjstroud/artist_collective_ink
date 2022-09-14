@@ -25,13 +25,13 @@ function ShopCard({ shopObj, onUpdate }) {
       <Card.Img variant="top" src={shopObj.image} alt={shopObj.shopName} style={{ height: '400px' }} />
       <Card.Body>
         <Card.Title>{shopObj.shopName} </Card.Title>
-        <p>Location: {shopObj.shopLocation}</p>
-        <p>Website: {shopObj.website}</p>
+        {/* <p>Location: {shopObj.shopLocation}</p>
+        <p>Website: {shopObj.website}</p> */}
         <Link href={`/shop/${shopObj.firebaseKey}`} passHref>
-          <Button variant="primary" className="m-2">View Shop Details</Button>
+          <Button variant="danger" className="m-2">View Shop Details</Button>
         </Link>
         <Link href={`/shop/edit/${shopObj.firebaseKey}`} passHref>
-          <Button variant="info">Edit Info</Button>
+          <Button variant="danger">Edit Info</Button>
         </Link>
         <Button variant="danger" onClick={deleteThisShop} className="m-2">
           Delete Shop

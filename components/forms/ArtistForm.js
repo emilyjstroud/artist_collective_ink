@@ -20,7 +20,6 @@ const initialState = {
 function ArtistForm({ obj }) {
   const [artistFormInput, setArtistFormInput] = useState(initialState);
   const [shops, setShops] = useState([]);
-  // const [artists, setArtists] = useState([]);
 
   const router = useRouter();
 
@@ -28,7 +27,6 @@ function ArtistForm({ obj }) {
 
   useEffect(() => {
     getShops(user.uid).then(setShops);
-    // getSingleShop(artists).then(setArtists);
     if (obj.firebaseKey) setArtistFormInput(obj);
   }, [obj, user]);
 
@@ -83,7 +81,6 @@ function ArtistForm({ obj }) {
               <option
                 key={shop.firebaseKey}
                 value={shop.firebaseKey}
-                // selected={shop.firebaseKey === obj.shopId}
               >
                 {shop.shopName}
               </option>

@@ -20,7 +20,7 @@ function ArtistSearchBar({ artists, setFilteredArtists }) {
   // };
 
   return (
-    <div>
+    <div className="d-flex flex-column justify-content-center align-content-center">
       <InputGroup className="mb-3">
         <Form.Control
           placeholder="Search Artists"

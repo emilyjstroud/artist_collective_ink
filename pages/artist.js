@@ -33,7 +33,7 @@ function ArtistPage() {
       </Link>
       <div className="d-flex flex-wrap">
         <title>Artist Collective Ink</title>
-        <h1>Meet the Artists</h1>
+        <h1 style={{ color: 'white' }}>Meet the Artists</h1>
         <div className="d-flex flex-wrap flex-row">
           {
         filteredArtists.map((artist) => (
