@@ -16,7 +16,7 @@ export default function NavBar() {
           <span className="navbar-toggler-icon" />
         </button>
 
-        <div className="collapse navbar-collapse" id="navbarTogglerDemo01">
+        <div className="justify-content-end" id="navbarTogglerDemo01">
           <ul className="navbar-nav me-auto">
             <li className="nav-item">
               <Link passHref href="/">
@@ -39,7 +39,14 @@ export default function NavBar() {
                 </a>
               </Link>
             </li>
-            <button type="button" className="btn btn-danger" onClick={signOut}>
+            <li className="nav-item">
+              <Link passHref href="/profile">
+                <a className="nav-link">
+                  Profile
+                </a>
+              </Link>
+            </li>
+            <button type="button" className="btn btn-danger btn-sm" onClick={signOut}>
               Sign Out
             </button>
           </ul>

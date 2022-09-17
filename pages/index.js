@@ -25,9 +25,6 @@ function Home() {
       <Link href="/shop" passHref>
         <Button variant="danger" className="m-2">Tour the Shops</Button>
       </Link>
-      {/* <button className="btn btn-danger btn-lg copy-btn" type="button" onClick={signOut}>
-        Sign Out
-      </button> */}
       <Button variant="danger" className="m-2" onClick={signOut}>Sign Out</Button>
     </div>
   );

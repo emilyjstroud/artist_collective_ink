@@ -37,7 +37,8 @@ function ArtistCard({ artistObj, onUpdate }) {
           Edit Info
         </Link>
         <br />
-        <Button variant="danger" onClick={deleteThisArtist} className="m-2">
+        <br />
+        <Button variant="danger" onClick={deleteThisArtist} className="justify-content-left">
           Delete Artist
         </Button>
       </Card.Body>

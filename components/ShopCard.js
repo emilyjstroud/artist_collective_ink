@@ -37,7 +37,8 @@ function ShopCard({ shopObj, onUpdate }) {
           Edit Info
         </Link>
         <br />
-        <Button variant="danger" onClick={deleteThisShop} className="m-2">
+        <br />
+        <Button variant="danger" onClick={deleteThisShop} className="justify-content-left">
           Delete Shop
         </Button>
       </Card.Body>
