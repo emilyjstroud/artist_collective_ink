@@ -27,12 +27,16 @@ function ShopCard({ shopObj, onUpdate }) {
         <Card.Title>{shopObj.shopName} </Card.Title>
         {/* <p>Location: {shopObj.shopLocation}</p>
         <p>Website: {shopObj.website}</p> */}
-        <Link href={`/shop/${shopObj.firebaseKey}`} passHref>
-          <Button variant="danger" className="m-2">View Shop Details</Button>
+        <Link href={`/shop/${shopObj.firebaseKey}`} passHref style={{ color: 'red' }}>
+          {/* <Button variant="danger" className="m-2">View Shop Details</Button> */}
+          View Shop Details
         </Link>
+        <br />
         <Link href={`/shop/edit/${shopObj.firebaseKey}`} passHref>
-          <Button variant="danger">Edit Info</Button>
+          {/* <Button variant="danger">Edit Info</Button> */}
+          Edit Info
         </Link>
+        <br />
         <Button variant="danger" onClick={deleteThisShop} className="m-2">
           Delete Shop
         </Button>

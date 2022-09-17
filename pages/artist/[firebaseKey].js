@@ -23,7 +23,7 @@ export default function ViewArtist() {
       </div>
       <div className="text-white ms-5 details">
         <h5 style={{ color: 'white' }}>
-          Name: {artistDetails.artistName}
+          {artistDetails.artistName}
         </h5>
         <p>Location: {artistDetails.artistLocation}</p>
         <p>Shop Name: {artistDetails.shopObj?.shopName}</p>

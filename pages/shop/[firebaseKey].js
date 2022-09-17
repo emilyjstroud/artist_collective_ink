@@ -29,7 +29,7 @@ export default function ViewShop() {
       </div>
       <div className="text-white ms-5 details">
         <h5 style={{ color: 'white' }}>
-          Name: {shopDetails.shopName}
+          {shopDetails.shopName}
         </h5>
         <p>Location: {shopDetails.shopLocation}</p>
         <p>Website: {shopDetails.website}</p>

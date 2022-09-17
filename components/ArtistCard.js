@@ -28,11 +28,15 @@ function ArtistCard({ artistObj, onUpdate }) {
         <p>Location: {artistObj.artistLocation}</p>
         <p>Instagram: {artistObj.igHandle}</p> */}
         <Link href={`/artist/${artistObj.firebaseKey}`} passHref>
-          <Button variant="danger" className="m-2">View Details</Button>
+          {/* <Button variant="danger" className="m-2">View Details</Button> */}
+          View Artist Details
         </Link>
+        <br />
         <Link href={`/artist/edit/${artistObj.firebaseKey}`} passHref>
-          <Button variant="danger">Edit Info</Button>
+          {/* <Button variant="danger">Edit Info</Button> */}
+          Edit Info
         </Link>
+        <br />
         <Button variant="danger" onClick={deleteThisArtist} className="m-2">
           Delete Artist
         </Button>

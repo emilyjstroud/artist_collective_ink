@@ -13,7 +13,6 @@ function ShopPage() {
   const { user } = useAuth();
 
   const getAllShops = () => {
-    // getShops(user.uid).then(setShops);
     getShops(user.uid).then((shopArray) => {
       setShops(shopArray);
       setFilterdShops(shopArray);
