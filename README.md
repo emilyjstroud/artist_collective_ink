@@ -14,6 +14,10 @@
 		- Creating shops and artists profiles, with the capability to read, update and delete those profiles.
 		- Searching specific artists and shops.
 ## Screenshots of Project: 
+    - https://user-images.githubusercontent.com/102272030/190873162-8753b083-c145-4838-ba4f-029a15f55a42.png 
+    - https://user-images.githubusercontent.com/102272030/190873201-9f79fb11-cf36-461d-ac46-87f5ec4b284a.png
+    - https://user-images.githubusercontent.com/102272030/190873220-78c935e5-ecd2-4f40-aeaf-d48d6b10171a.png
+    - https://user-images.githubusercontent.com/102272030/190873240-60143731-2ec9-4454-b6cd-b86a333ccd75.png
    
 ## List of Contributors/Githhubs: 
 		- Emily Stroud: https://github.com/emilyjstroud
