@@ -30,6 +30,8 @@ function ShopPage() {
       <Link href="/shop/new" passHref>
         <Button className="btn btn-danger">Add a Shop</Button>
       </Link>
+      <br />
+      <br />
       <div className="d-flex flex-wrap">
         <title>Artist Collective Ink</title>
         <h1 style={{ color: 'white' }}>Tour the Shops</h1>

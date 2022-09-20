@@ -19,8 +19,18 @@ a {
 
 body {
   background-color: #000000;
+  /* background-image:url("https://us.123rf.com/450wm/natthanim/natthanim1707/natthanim170700031/83144515-dark-grey-black-slate-texture-in-natural-patterns-with-high-resolution-for-background-and-design-art.jpg?ver=6"); */
+  /* font-family: '', ; */
 }
 
 .artistFont {
   color: 'white';
+}
+
+.artistBtn {
+  justify-content: 'center';
+}
+
+h1 {
+  justify-content: 'center';
 }

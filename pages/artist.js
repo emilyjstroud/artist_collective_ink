@@ -29,8 +29,10 @@ function ArtistPage() {
     <div>
       <ArtistSearchBar artists={artists} setFilteredArtists={setFilteredArtists} />
       <Link href="/artist/new" passHref>
-        <Button className="btn btn-danger">Add an Artist</Button>
+        <Button className="artistBtn btn-danger">Add an Artist</Button>
       </Link>
+      <br />
+      <br />
       <div className="d-flex flex-wrap">
         <title>Artist Collective Ink</title>
         <h1 style={{ color: 'white' }}>Meet the Artists</h1>

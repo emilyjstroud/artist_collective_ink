@@ -5,7 +5,7 @@ import { signOut } from '../utils/auth';
 
 export default function NavBar() {
   return (
-    <nav className="navbar navbar-expand-md navbar-dark bg-dark">
+    <nav className="navbar navbar-expand-md navbar-dark bg-black">
       <div className="container-fluid">
         <Link passHref href="/">
           <a className="navbar-brand" data-bs-toggle="collapse" data-bs-target="#navbarTogglerDemo01">
@@ -20,28 +20,28 @@ export default function NavBar() {
           <ul className="navbar-nav me-auto">
             <li className="nav-item">
               <Link passHref href="/">
-                <a className="nav-link">
+                <a style={{ color: 'white' }} className="nav-link">
                   Home
                 </a>
               </Link>
             </li>
             <li className="nav-item">
               <Link passHref href="/artist">
-                <a className="nav-link">
+                <a style={{ color: 'white' }} className="nav-link">
                   Artists
                 </a>
               </Link>
             </li>
             <li className="nav-item">
               <Link passHref href="/shop">
-                <a className="nav-link">
+                <a style={{ color: 'white' }} className="nav-link">
                   Shops
                 </a>
               </Link>
             </li>
             <li className="nav-item">
               <Link passHref href="/profile">
-                <a className="nav-link">
+                <a style={{ color: 'white' }} className="nav-link">
                   Profile
                 </a>
               </Link>
@@ -52,6 +52,7 @@ export default function NavBar() {
           </ul>
         </div>
       </div>
+      <br />
     </nav>
   );
 }
