@@ -1,3 +1,4 @@
+/* eslint-disable react-hooks/exhaustive-deps */
 import React, { useState, useEffect } from 'react';
 import PropTypes from 'prop-types';
 import Card from 'react-bootstrap/Card';
@@ -7,7 +8,7 @@ import { deleteArtist } from '../api/artistData';
 import { getSingleShop } from '../api/shopData';
 
 function ArtistCard({ artistObj, onUpdate }) {
-  const [shop, setShop] = useState({});
+  const [setShop] = useState({});
 
   const deleteThisArtist = () => {
     if (window.confirm(`Delete ${artistObj.artistName}?`)) {
@@ -24,16 +25,16 @@ function ArtistCard({ artistObj, onUpdate }) {
       <Card.Img variant="top" src={artistObj.image} alt={artistObj.artistName} style={{ height: '400px' }} />
       <Card.Body>
         <Card.Title>{artistObj.artistName}</Card.Title>
-        <p>Shop Name: {shop.shopName}</p>
-        <p>Location: {artistObj.artistLocation}</p>
-        <p>Instagram: {artistObj.igHandle}</p>
         <Link href={`/artist/${artistObj.firebaseKey}`} passHref>
-          <Button variant="primary" className="m-2">View Details</Button>
+          View Artist Details
         </Link>
+        <br />
         <Link href={`/artist/edit/${artistObj.firebaseKey}`} passHref>
-          <Button variant="info">Edit Info</Button>
+          Edit Info
         </Link>
-        <Button variant="danger" onClick={deleteThisArtist} className="m-2">
+        <br />
+        <br />
+        <Button variant="danger" onClick={deleteThisArtist} className="justify-content-left">
           Delete Artist
         </Button>
       </Card.Body>

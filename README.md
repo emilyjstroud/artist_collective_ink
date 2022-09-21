@@ -1,3 +1,28 @@
+ ## Name of Project:
+      - Artist Collective Ink.
+ ## Project Overview: 
+      - Artist Collective Ink. is designed for the modern day tattoo enthusiast. Artist Collective Ink. will allow a user to log-in via Google Authentication and give them permission to create profiles for various tattoo shops as well as profiles for the associated shop artists. Once a shop has been created, the user will be allowed to update or delete this shop, as well as view the shop's details. Upon creation of a shop, a user will be allowed to create an artist profile with similar functionality, and choose from a dropdown list of created shops. This app is still in its prototype phase, so later goals would be to allow users to add multiple pieces of artwork to an associated artist, as well as a few more navigation buttons for ease of user experience.
+## Wireframe: 
+    - https://dbdiagram.io/d/62fc26f0c2d9cf52fabcb4be
+## Deployed Project: 
+    - 
+## Project Board: 
+    - https://github.com/users/emilyjstroud/projects/6
+## User Description: 
+    - Our user is the modern day tattoo enthusiast who is seeking a way to conveniently store photos of various tattoo artwork that they like. It will provide a space for the user to easily compare the different artists they may be interested in for similar styles of tattoos, so that they are able to choose the artist best suited for them.
+## List of Features:
+		- Creating shops and artists profiles, with the capability to read, update and delete those profiles.
+		- Searching specific artists and shops.
+## Screenshots of Project: 
+    - https://user-images.githubusercontent.com/102272030/190873162-8753b083-c145-4838-ba4f-029a15f55a42.png 
+    - https://user-images.githubusercontent.com/102272030/190873201-9f79fb11-cf36-461d-ac46-87f5ec4b284a.png
+    - https://user-images.githubusercontent.com/102272030/190873220-78c935e5-ecd2-4f40-aeaf-d48d6b10171a.png
+    - https://user-images.githubusercontent.com/102272030/190873240-60143731-2ec9-4454-b6cd-b86a333ccd75.png
+   
+## List of Contributors/Githhubs: 
+		- Emily Stroud: https://github.com/emilyjstroud
+## Loom Video: 
+
 # React/Next.js Template
 
 [See Live Demo of this Template](https://drt-next-js-template.netlify.app/)

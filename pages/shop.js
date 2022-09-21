@@ -13,7 +13,6 @@ function ShopPage() {
   const { user } = useAuth();
 
   const getAllShops = () => {
-    // getShops(user.uid).then(setShops);
     getShops(user.uid).then((shopArray) => {
       setShops(shopArray);
       setFilterdShops(shopArray);
@@ -31,9 +30,11 @@ function ShopPage() {
       <Link href="/shop/new" passHref>
         <Button className="btn btn-danger">Add a Shop</Button>
       </Link>
+      <br />
+      <br />
       <div className="d-flex flex-wrap">
         <title>Artist Collective Ink</title>
-        <h1>Tour the Shops</h1>
+        <h1 style={{ color: 'white' }}>Tour the Shops</h1>
         <div className="d-flex flex-wrap flex-row">
           {
         filteredShops.map((shop) => (

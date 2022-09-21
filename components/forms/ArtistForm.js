@@ -20,7 +20,6 @@ const initialState = {
 function ArtistForm({ obj }) {
   const [artistFormInput, setArtistFormInput] = useState(initialState);
   const [shops, setShops] = useState([]);
-  // const [artists, setArtists] = useState([]);
 
   const router = useRouter();
 
@@ -28,7 +27,6 @@ function ArtistForm({ obj }) {
 
   useEffect(() => {
     getShops(user.uid).then(setShops);
-    // getSingleShop(artists).then(setArtists);
     if (obj.firebaseKey) setArtistFormInput(obj);
   }, [obj, user]);
 
@@ -55,6 +53,7 @@ function ArtistForm({ obj }) {
 
   return (
     <Form onSubmit={handleSubmit}>
+      <title>Artist Collective Ink</title>
       <h2 className="text-black mt-5">{obj.firebaseKey ? 'Update' : 'Create'} Artist</h2>
       <FloatingLabel controlId="floatingInput1" label="Artist Name" className="mb-3">
         <Form.Control type="text" placeholder="Artist's Name" name="artistName" value={artistFormInput.artistName} onChange={handleChange} required />
@@ -83,7 +82,6 @@ function ArtistForm({ obj }) {
               <option
                 key={shop.firebaseKey}
                 value={shop.firebaseKey}
-                // selected={shop.firebaseKey === obj.shopId}
               >
                 {shop.shopName}
               </option>

@@ -47,6 +47,7 @@ function ShopForm({ obj }) {
 
   return (
     <Form onSubmit={handleSubmit}>
+      <title>Artist Collective Ink</title>
       <h2 className="text-black mt-5">{obj.firebaseKey ? 'Update' : 'Create'} Shop</h2>
       <FloatingLabel controlId="floatingInput1" label="Shop Name" className="mb-3">
         <Form.Control type="text" placeholder="Shop Name" name="shopName" value={shopFormInput.shopName} onChange={handleChange} required />

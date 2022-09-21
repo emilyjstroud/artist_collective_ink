@@ -14,7 +14,6 @@ function ArtistPage() {
   const { user } = useAuth();
 
   const getAllArtists = () => {
-    // getArtistsWithShop(user.uid).then(setArtists);
     getArtistsWithShop(user.uid).then((artistArray) => {
       setArtists(artistArray);
       setFilteredArtists(artistArray);
@@ -29,11 +28,13 @@ function ArtistPage() {
     <div>
       <ArtistSearchBar artists={artists} setFilteredArtists={setFilteredArtists} />
       <Link href="/artist/new" passHref>
-        <Button className="btn btn-danger">Add an Artist</Button>
+        <Button className="artistBtn btn-danger">Add an Artist</Button>
       </Link>
+      <br />
+      <br />
       <div className="d-flex flex-wrap">
         <title>Artist Collective Ink</title>
-        <h1>Meet the Artists</h1>
+        <h1 style={{ color: 'white' }}>Meet the Artists</h1>
         <div className="d-flex flex-wrap flex-row">
           {
         filteredArtists.map((artist) => (
