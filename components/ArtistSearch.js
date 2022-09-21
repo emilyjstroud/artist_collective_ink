@@ -2,7 +2,6 @@ import React, { useState } from 'react';
 import PropTypes from 'prop-types';
 import Form from 'react-bootstrap/Form';
 import InputGroup from 'react-bootstrap/InputGroup';
-// import Button from 'react-bootstrap/Button';
 
 function ArtistSearchBar({ artists, setFilteredArtists }) {
   const [searchInput, setSearchInput] = useState('');
@@ -14,11 +13,6 @@ function ArtistSearchBar({ artists, setFilteredArtists }) {
     setFilteredArtists(results);
   };
 
-  // const resetSearch = () => {
-  //   setSearchInput('');
-  //   setFilteredShops(filteredShops);
-  // };
-
   return (
     <div className="d-flex flex-column justify-content-center align-content-center">
       <InputGroup className="mb-3">
@@ -29,9 +23,6 @@ function ArtistSearchBar({ artists, setFilteredArtists }) {
           onChange={handleChange}
           aria-describedby="basic-addon2"
         />
-        {/* <Button variant="danger" onClick={resetSearch}>
-          Reset
-        </Button> */}
       </InputGroup>
     </div>
   );

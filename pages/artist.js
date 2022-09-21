@@ -14,7 +14,6 @@ function ArtistPage() {
   const { user } = useAuth();
 
   const getAllArtists = () => {
-    // getArtistsWithShop(user.uid).then(setArtists);
     getArtistsWithShop(user.uid).then((artistArray) => {
       setArtists(artistArray);
       setFilteredArtists(artistArray);

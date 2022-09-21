@@ -10,7 +10,6 @@ import ArtistCard from '../../components/ArtistCard';
 export default function ViewShop() {
   const [shopDetails, setShopDetails] = useState({});
   const [artists, setArtists] = useState([]);
-  // const [websites, setWebsites] = useState([]);
 
   const router = useRouter();
 
@@ -19,7 +18,6 @@ export default function ViewShop() {
   useEffect(() => {
     viewShopDetails(firebaseKey).then(setShopDetails);
     getShopArtists(firebaseKey).then(setArtists);
-    // viewShopDetails(firebaseKey).then(setWebsites);
   }, [firebaseKey, shopDetails]);
 
   return (
@@ -33,10 +31,6 @@ export default function ViewShop() {
         </h5>
         <p>Location: {shopDetails.shopLocation}</p>
         <p>Website: {shopDetails.website}</p>
-        {/* <p>Website:  { websites.map((website) => (
-          {shopDetails.website}
-        ))}
-        </p> */}
         <hr />
         <Link href="/shop" passHref>
           <Button variant="danger" className="m-2">Back to Shops</Button>

@@ -25,16 +25,11 @@ function ArtistCard({ artistObj, onUpdate }) {
       <Card.Img variant="top" src={artistObj.image} alt={artistObj.artistName} style={{ height: '400px' }} />
       <Card.Body>
         <Card.Title>{artistObj.artistName}</Card.Title>
-        {/* <p>Shop Name: {shop.shopName}</p>
-        <p>Location: {artistObj.artistLocation}</p>
-        <p>Instagram: {artistObj.igHandle}</p> */}
         <Link href={`/artist/${artistObj.firebaseKey}`} passHref>
-          {/* <Button variant="danger" className="m-2">View Details</Button> */}
           View Artist Details
         </Link>
         <br />
         <Link href={`/artist/edit/${artistObj.firebaseKey}`} passHref>
-          {/* <Button variant="danger">Edit Info</Button> */}
           Edit Info
         </Link>
         <br />

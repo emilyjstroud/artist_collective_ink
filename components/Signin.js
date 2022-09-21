@@ -1,6 +1,5 @@
 import React from 'react';
 import { Button } from 'react-bootstrap';
-// import WebImage from '../public/images/webImages';
 import { signIn } from '../utils/auth';
 
 function Signin() {
@@ -18,7 +17,6 @@ function Signin() {
       <h1 style={{ color: 'white' }}>Welcome to Artist Collective Ink.</h1>
       <p style={{ color: 'white' }}>Click the button below to enter.</p>
       <Button variant="danger" className="m-2" onClick={signIn}>Sign In</Button>
-      {/* <WebImage /> */}
     </div>
   );
 }

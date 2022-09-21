@@ -3,7 +3,6 @@ import { useRouter } from 'next/router';
 import React, { useEffect, useState } from 'react';
 import Link from 'next/link';
 import Button from 'react-bootstrap/Button';
-// import PropTypes from 'prop-types';
 import { viewArtistDetails } from '../../api/mergedData';
 import { getSingleShop } from '../../api/shopData';
 
@@ -36,16 +35,7 @@ export default function ViewArtist() {
           <Button variant="danger" className="m-2">Back to Artists</Button>
         </Link>
         <br />
-        {/* <Link href={`/shop/${shopObj.firebaseKey}`} passHref>
-          <Button variant="danger" className="m-2">View Shop</Button>
-        </Link> */}
       </div>
     </div>
   );
 }
-
-// ViewArtist.propTypes = {
-//   shopObj: PropTypes.shape({
-//     firebaseKey: PropTypes.string,
-//   }).isRequired,
-// };
