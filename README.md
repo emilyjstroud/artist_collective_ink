@@ -5,7 +5,7 @@
 ## Wireframe: 
     - https://dbdiagram.io/d/62fc26f0c2d9cf52fabcb4be
 ## Deployed Project: 
-    - 
+    - https://artist-collective-ink.netlify.app
 ## Project Board: 
     - https://github.com/users/emilyjstroud/projects/6
 ## User Description: 
