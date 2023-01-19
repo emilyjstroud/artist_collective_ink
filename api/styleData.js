@@ -1,29 +1,29 @@
 import { clientCredentials } from '../utils/client';
 
 const getAllStyles = () => new Promise((resolve, reject) => {
-  fetch(`${clientCredentials.databaseURL}/style`)
+  fetch(`${clientCredentials.databaseURL}/styles`)
     .then((response) => response.json())
     .then(resolve)
     .then(reject);
 });
 
 const getSingleStyle = (id) => new Promise((resolve, reject) => {
-  fetch(`${clientCredentials.databaseURL}/style/${id}`)
+  fetch(`${clientCredentials.databaseURL}/styles/${id}`)
     .then((response) => resolve(response.json()))
     .catch((error) => reject(error));
 });
 
 const getStyleByArtistId = (ArtistId) => new Promise((resolve, reject) => {
-  fetch(`${clientCredentials.databaseURL}/style/${ArtistId}`)
+  fetch(`${clientCredentials.databaseURL}/styles/${ArtistId}`)
     .then((response) => resolve(response.json()))
     .catch((error) => reject(error));
 });
 
 const createStyle = (styleObj) => new Promise((resolve, reject) => {
-  fetch(`${clientCredentials.databaseURL}/style`, {
+  fetch(`${clientCredentials.databaseURL}/styles`, {
     method: 'POST',
     body: JSON.stringify(styleObj),
-    heaers: {
+    headers: {
       'content-type': 'application/json',
     },
   })
@@ -42,7 +42,7 @@ const updateStyle = (data, id) => new Promise((resolve, reject) => {
 });
 
 const deleteStyle = (id) => new Promise((resolve, reject) => {
-  fetch(`${clientCredentials.databaseURL}/style/${id}`, {
+  fetch(`${clientCredentials.databaseURL}/styles/${id}`, {
     method: 'DELETE',
     headers: { 'Content-Type': 'application/json' },
   })
