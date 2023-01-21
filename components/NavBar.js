@@ -40,6 +40,13 @@ export default function NavBar() {
               </Link>
             </li>
             <li className="nav-item">
+              <Link passHref href="/style">
+                <a style={{ color: 'white' }} className="nav-link">
+                  Styles
+                </a>
+              </Link>
+            </li>
+            <li className="nav-item">
               <Link passHref href="/profile">
                 <a style={{ color: 'white' }} className="nav-link">
                   Profile

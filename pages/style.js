@@ -24,7 +24,7 @@ function Styles() {
         New Style
       </Button>
       <article className="styles">
-        <h1>Styles</h1>
+        <h1 style={{ color: 'white' }}>Styles</h1>
         {styles.map((style) => (
           <section key={`style--${style.id}`} className="style">
             <StyleCard

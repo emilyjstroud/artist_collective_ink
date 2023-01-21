@@ -1,7 +1,7 @@
-import axios from 'axios';
+// import axios from 'axios';
 import { clientCredentials } from '../utils/client';
 
-const dbUrl = clientCredentials.databaseURL;
+// const dbUrl = clientCredentials.databaseURL;
 
 // GET SHOPS
 // const getShops = (uid) => new Promise((resolve, reject) => {
@@ -48,11 +48,11 @@ const dbUrl = clientCredentials.databaseURL;
 // });
 
 // GET SHOP'S ARTISTS
-const getShopArtists = (firebaseKey) => new Promise((resolve, reject) => {
-  axios.get(`${dbUrl}/artists.json?orderBy="shopId"&equalTo="${firebaseKey}"`)
-    .then((response) => resolve(Object.values(response.data)))
-    .catch((error) => reject(error));
-});
+// const getShopArtists = (firebaseKey) => new Promise((resolve, reject) => {
+//   axios.get(`${dbUrl}/artists.json?orderBy="shopId"&equalTo="${firebaseKey}"`)
+//     .then((response) => resolve(Object.values(response.data)))
+//     .catch((error) => reject(error));
+// });
 
 const getShops = () => new Promise((resolve, reject) => {
   fetch(`${clientCredentials.databaseURL}/shops`)
@@ -94,6 +94,12 @@ const updateShop = (data, id) => new Promise((resolve, reject) => {
 
 const getSingleShop = (id) => new Promise((resolve, reject) => {
   fetch(`${clientCredentials.databaseURL}/shops/${id}`)
+    .then((response) => resolve(response.json()))
+    .catch((error) => reject(error));
+});
+
+const getShopArtists = (id) => new Promise((resolve, reject) => {
+  fetch(`${clientCredentials}/artists?orderBy="shopId"&equalTo="${id}"`)
     .then((response) => resolve(response.json()))
     .catch((error) => reject(error));
 });

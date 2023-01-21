@@ -48,7 +48,7 @@ import { clientCredentials } from '../utils/client';
 // });
 
 const getArtists = () => new Promise((resolve, reject) => {
-  fetch(`${clientCredentials.databaseURL}/artisst`)
+  fetch(`${clientCredentials.databaseURL}/artists`)
     .then((response) => response.json())
     .then(resolve)
     .then(reject);
