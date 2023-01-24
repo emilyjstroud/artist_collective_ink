@@ -5,7 +5,7 @@ import Form from 'react-bootstrap/Form';
 import FloatingLabel from 'react-bootstrap/FloatingLabel';
 import Button from 'react-bootstrap/Button';
 import { createShop, updateShop } from '../../api/shopData';
-import { useAuth } from '../../utils/context/authContext';
+// import { useAuth } from '../../utils/context/authContext';
 
 const initialState = {
   name: '',
@@ -13,16 +13,17 @@ const initialState = {
   website: '',
   photo: '',
   id: '',
+  user: '',
 };
 
-function ShopForm({ obj }) {
+function ShopForm({ user, obj }) {
   const [shopFormInput, setShopFormInput] = useState(initialState);
   const router = useRouter();
-  const { user } = useAuth();
+  // const { user } = useAuth();
 
-  useEffect(() => {
-    if (obj.id) setShopFormInput(obj);
-  }, [obj, user]);
+  // useEffect(() => {
+  //   if (obj.id) setShopFormInput(obj);
+  // }, [obj, user]);
 
   const handleChange = (e) => {
     const { name, value } = e.target;
@@ -32,18 +33,43 @@ function ShopForm({ obj }) {
     }));
   };
 
+  // const handleSubmit = (e) => {
+  //   e.preventDefault();
+  //   if (obj.id) {
+  //     updateShop(shopFormInput)
+  //       .then(() => router.push('/shop'));
+  //   } else {
+  //     const payload = { ...shopFormInput, uid: user.uid };
+  //     createShop(payload).then(() => {
+  //       router.push('/shop');
+  //     });
+  //   }
+  // };
+
+  // Re-Factored
   const handleSubmit = (e) => {
     e.preventDefault();
     if (obj.id) {
-      updateShop(shopFormInput)
-        .then(() => router.push('/shop'));
+      updateShop(user, shopFormInput, obj.id).then(() => router.push('/shops'));
     } else {
-      const payload = { ...shopFormInput, uid: user.uid };
-      createShop(payload).then(() => {
-        router.push('/shop');
-      });
+      createShop(shopFormInput).then(() => router.push('shops'));
     }
   };
+
+  const getAndSet = () => {
+    if (obj.id) {
+      setShopFormInput(obj);
+    }
+    const workAround = 'user';
+    setShopFormInput((prevState) => ({
+      ...prevState,
+      [workAround]: user.uid,
+    }));
+  };
+
+  useEffect(() => {
+    getAndSet();
+  }, [obj]);
 
   return (
     <Form onSubmit={handleSubmit}>
@@ -66,13 +92,17 @@ function ShopForm({ obj }) {
   );
 }
 
-// PROP TYPES
+// PROP TYPES -- New v
 ShopForm.propTypes = {
+  user: PropTypes.shape({
+    uid: PropTypes.string,
+  }).isRequired,
+
   obj: PropTypes.shape({
-    name: PropTypes.string,
-    location: PropTypes.string,
-    website: PropTypes.string,
-    photo: PropTypes.string,
+    // name: PropTypes.string,
+    // location: PropTypes.string,
+    // website: PropTypes.string,
+    // photo: PropTypes.string,
     id: PropTypes.number,
   }),
 };
