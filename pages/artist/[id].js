@@ -11,12 +11,12 @@ export default function ViewArtist() {
 
   const router = useRouter();
 
-  const { firebaseKey } = router.query;
+  const { id } = router.query;
 
   useEffect(() => {
-    viewArtistDetails(firebaseKey).then(setArtistDetails);
+    viewArtistDetails(id).then(setArtistDetails);
     getSingleShop();
-  }, [firebaseKey, artistDetails]);
+  }, [id, artistDetails]);
 
   return (
     <div className="mt-5 d-flex flex-wrap">

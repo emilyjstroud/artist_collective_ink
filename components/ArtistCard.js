@@ -12,7 +12,7 @@ function ArtistCard({ artistObj, onUpdate }) {
 
   const deleteThisArtist = () => {
     if (window.confirm(`Delete ${artistObj.artistName}?`)) {
-      deleteArtist(artistObj.firebaseKey).then(() => onUpdate());
+      deleteArtist(artistObj.id).then(() => onUpdate());
     }
   };
 
@@ -25,11 +25,11 @@ function ArtistCard({ artistObj, onUpdate }) {
       <Card.Img variant="top" src={artistObj.image} alt={artistObj.artistName} style={{ height: '400px' }} />
       <Card.Body>
         <Card.Title>{artistObj.artistName}</Card.Title>
-        <Link href={`/artist/${artistObj.firebaseKey}`} passHref>
+        <Link href={`/artist/${artistObj.id}`} passHref>
           View Artist Details
         </Link>
         <br />
-        <Link href={`/artist/edit/${artistObj.firebaseKey}`} passHref>
+        <Link href={`/artist/edit/${artistObj.id}`} passHref>
           Edit Info
         </Link>
         <br />
@@ -48,8 +48,8 @@ ArtistCard.propTypes = {
     artistLocation: PropTypes.string,
     igHandle: PropTypes.string,
     image: PropTypes.string,
-    shopId: PropTypes.string,
-    firebaseKey: PropTypes.string,
+    shopId: PropTypes.number,
+    id: PropTypes.number,
   }).isRequired,
   onUpdate: PropTypes.func.isRequired,
 };

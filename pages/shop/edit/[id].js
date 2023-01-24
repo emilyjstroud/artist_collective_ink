@@ -7,11 +7,11 @@ export default function EditShop() {
   const [editShopItem, setEditShopItem] = useState({});
   const router = useRouter();
 
-  const { firebaseKey } = router.query;
+  const { id } = router.query;
 
   useEffect(() => {
-    getSingleShop(firebaseKey).then(setEditShopItem);
-  }, [firebaseKey]);
+    getSingleShop(id).then(setEditShopItem);
+  }, [id]);
 
   return (
     <ShopForm obj={editShopItem} />

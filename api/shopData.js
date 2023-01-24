@@ -62,7 +62,7 @@ const getShops = () => new Promise((resolve, reject) => {
 });
 
 const createShop = (shopObj) => new Promise((resolve, reject) => {
-  fetch(`${clientCredentials.databseURL}/shops`, {
+  fetch(`${clientCredentials.databaseURL}/shops`, {
     method: 'POST',
     body: JSON.stringify(shopObj),
     headers: {
@@ -83,7 +83,7 @@ const deleteShop = (id) => new Promise((resolve, reject) => {
 });
 
 const updateShop = (data, id) => new Promise((resolve, reject) => {
-  fetch(`${clientCredentials.databseURL}/shops/${id}`, {
+  fetch(`${clientCredentials.databaseURL}/shops/${id}`, {
     method: 'PUT',
     headers: { 'Content-Type': 'application' },
     body: JSON.stringify(data),

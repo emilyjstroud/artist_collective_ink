@@ -12,7 +12,7 @@ const initialState = {
   shopLocation: '',
   website: '',
   image: '',
-  firebaseKey: '',
+  id: '',
 };
 
 function ShopForm({ obj }) {
@@ -21,7 +21,7 @@ function ShopForm({ obj }) {
   const { user } = useAuth();
 
   useEffect(() => {
-    if (obj.firebaseKey) setShopFormInput(obj);
+    if (obj.id) setShopFormInput(obj);
   }, [obj, user]);
 
   const handleChange = (e) => {
@@ -34,7 +34,7 @@ function ShopForm({ obj }) {
 
   const handleSubmit = (e) => {
     e.preventDefault();
-    if (obj.firebaseKey) {
+    if (obj.id) {
       updateShop(shopFormInput)
         .then(() => router.push('/shop'));
     } else {
@@ -48,7 +48,7 @@ function ShopForm({ obj }) {
   return (
     <Form onSubmit={handleSubmit}>
       <title>Artist Collective Ink</title>
-      <h2 className="text-black mt-5">{obj.firebaseKey ? 'Update' : 'Create'} Shop</h2>
+      <h2 className="text-black mt-5">{obj.id ? 'Update' : 'Create'} Shop</h2>
       <FloatingLabel controlId="floatingInput1" label="Shop Name" className="mb-3">
         <Form.Control type="text" placeholder="Shop Name" name="shopName" value={shopFormInput.shopName} onChange={handleChange} required />
       </FloatingLabel>
@@ -61,7 +61,7 @@ function ShopForm({ obj }) {
       <FloatingLabel controlId="floatingInput2" label="Shop Image" className="mb-3">
         <Form.Control type="url" placeholder="Enter an image url" name="image" value={shopFormInput.image} onChange={handleChange} required />
       </FloatingLabel>
-      <Button type="submit">{obj.firebaseKey ? 'Update' : 'Create'} Shop</Button>
+      <Button type="submit">{obj.id ? 'Update' : 'Create'} Shop</Button>
     </Form>
   );
 }
@@ -72,7 +72,7 @@ ShopForm.propTypes = {
     shopName: PropTypes.string,
     shopLocation: PropTypes.string,
     website: PropTypes.string,
-    firebaseKey: PropTypes.string,
+    id: PropTypes.number,
   }),
 };
 

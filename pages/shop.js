@@ -38,7 +38,7 @@ function ShopPage() {
         <div className="d-flex flex-wrap flex-row">
           {
         filteredShops.map((shop) => (
-          <ShopCard key={shop.firebaseKey} shopObj={shop} onUpdate={getAllShops} />
+          <ShopCard key={shop.id} shopObj={shop} onUpdate={getAllShops} />
         ))
         }
         </div>

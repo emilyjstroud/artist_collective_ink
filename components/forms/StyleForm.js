@@ -46,7 +46,7 @@ const StyleForm = ({ styleObj }) => {
           <Form.Label>Style Name</Form.Label>
           <Form.Control name="name" required value={currentStyle.name} onChange={handleChange} />
         </Form.Group>
-        <Button variant="primary" type="submit">
+        <Button variant="primary" type="submit">{styleObj.id ? 'Update' : 'Create'}
           Submit
         </Button>
       </Form>

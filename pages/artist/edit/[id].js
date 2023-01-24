@@ -7,11 +7,11 @@ export default function EditArtist() {
   const [editItem, setEditItem] = useState({});
   const router = useRouter();
 
-  const { firebaseKey } = router.query;
+  const { id } = router.query;
 
   useEffect(() => {
-    getSingleArtist(firebaseKey).then(setEditItem);
-  }, [firebaseKey]);
+    getSingleArtist(id).then(setEditItem);
+  }, [id]);
 
   return (
     <ArtistForm obj={editItem} />

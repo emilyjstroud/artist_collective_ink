@@ -14,7 +14,7 @@ const initialState = {
   igHandle: '',
   image: '',
   shopId: '',
-  firebaseKey: '',
+  id: '',
 };
 
 function ArtistForm({ obj }) {
@@ -27,7 +27,7 @@ function ArtistForm({ obj }) {
 
   useEffect(() => {
     getShops(user.uid).then(setShops);
-    if (obj.firebaseKey) setArtistFormInput(obj);
+    if (obj.id) setArtistFormInput(obj);
   }, [obj, user]);
 
   const handleChange = (e) => {
@@ -40,9 +40,9 @@ function ArtistForm({ obj }) {
 
   const handleSubmit = (e) => {
     e.preventDefault();
-    if (obj.firebaseKey) {
+    if (obj.id) {
       updateArtist(artistFormInput)
-        .then(() => router.push(`/artist/${obj.firebaseKey}`));
+        .then(() => router.push(`/artist/${obj.id}`));
     } else {
       const payload = { ...artistFormInput, uid: user.uid };
       createArtist(payload).then(() => {
@@ -54,7 +54,7 @@ function ArtistForm({ obj }) {
   return (
     <Form onSubmit={handleSubmit}>
       <title>Artist Collective Ink</title>
-      <h2 className="text-black mt-5">{obj.firebaseKey ? 'Update' : 'Create'} Artist</h2>
+      <h2 className="text-black mt-5">{obj.id ? 'Update' : 'Create'} Artist</h2>
       <FloatingLabel controlId="floatingInput1" label="Artist Name" className="mb-3">
         <Form.Control type="text" placeholder="Artist's Name" name="artistName" value={artistFormInput.artistName} onChange={handleChange} required />
       </FloatingLabel>
@@ -80,8 +80,8 @@ function ArtistForm({ obj }) {
           {
             shops.map((shop) => (
               <option
-                key={shop.firebaseKey}
-                value={shop.firebaseKey}
+                key={shop.id}
+                value={shop.id}
               >
                 {shop.shopName}
               </option>
@@ -90,7 +90,7 @@ function ArtistForm({ obj }) {
         </Form.Select>
       </FloatingLabel>
 
-      <Button type="submit">{obj.firebaseKey ? 'Update' : 'Create'} Artist</Button>
+      <Button type="submit">{obj.id ? 'Update' : 'Create'} Artist</Button>
     </Form>
   );
 }
@@ -103,8 +103,8 @@ ArtistForm.propTypes = {
     shopName: PropTypes.string,
     igHandle: PropTypes.string,
     image: PropTypes.string,
-    shopId: PropTypes.string,
-    firebaseKey: PropTypes.string,
+    shopId: PropTypes.number,
+    id: PropTypes.number,
   }),
 };
 
