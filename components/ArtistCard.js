@@ -11,7 +11,7 @@ function ArtistCard({ artistObj, onUpdate }) {
   const [setShop] = useState({});
 
   const deleteThisArtist = () => {
-    if (window.confirm(`Delete ${artistObj.artistName}?`)) {
+    if (window.confirm(`Delete ${artistObj.name}?`)) {
       deleteArtist(artistObj.id).then(() => onUpdate());
     }
   };
@@ -22,9 +22,9 @@ function ArtistCard({ artistObj, onUpdate }) {
 
   return (
     <Card style={{ width: '18rem', margin: '10px' }}>
-      <Card.Img variant="top" src={artistObj.image} alt={artistObj.artistName} style={{ height: '400px' }} />
+      <Card.Img variant="top" src={artistObj.artworkPhoto} alt={artistObj.name} style={{ height: '400px' }} />
       <Card.Body>
-        <Card.Title>{artistObj.artistName}</Card.Title>
+        <Card.Title>{artistObj.name}</Card.Title>
         <Link href={`/artist/${artistObj.id}`} passHref>
           View Artist Details
         </Link>
@@ -44,10 +44,10 @@ function ArtistCard({ artistObj, onUpdate }) {
 
 ArtistCard.propTypes = {
   artistObj: PropTypes.shape({
-    artistName: PropTypes.string,
-    artistLocation: PropTypes.string,
-    igHandle: PropTypes.string,
-    image: PropTypes.string,
+    name: PropTypes.string,
+    location: PropTypes.string,
+    instagram: PropTypes.string,
+    artworkPhoto: PropTypes.string,
     shopId: PropTypes.number,
     id: PropTypes.number,
   }).isRequired,

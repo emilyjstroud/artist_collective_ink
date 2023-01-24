@@ -8,7 +8,7 @@ import { deleteShopArtists } from '../api/mergedData';
 
 function ShopCard({ shopObj, onUpdate }) {
   const deleteThisShop = () => {
-    if (window.confirm(`Delete ${shopObj.shopName}?`)) {
+    if (window.confirm(`Delete ${shopObj.name}?`)) {
       deleteShopArtists(shopObj.id).then(() => onUpdate());
     }
   };
@@ -19,9 +19,9 @@ function ShopCard({ shopObj, onUpdate }) {
 
   return (
     <Card style={{ width: '18rem', margin: '10px' }}>
-      <Card.Img variant="top" src={shopObj.image} alt={shopObj.shopName} style={{ height: '400px' }} />
+      <Card.Img variant="top" src={shopObj.photo} alt={shopObj.name} style={{ height: '400px' }} />
       <Card.Body>
-        <Card.Title>{shopObj.shopName} </Card.Title>
+        <Card.Title>{shopObj.name} </Card.Title>
         <Link href={`/shop/${shopObj.id}`} passHref style={{ color: 'red' }}>
           View Shop Details
         </Link>
@@ -41,10 +41,10 @@ function ShopCard({ shopObj, onUpdate }) {
 
 ShopCard.propTypes = {
   shopObj: PropTypes.shape({
-    shopName: PropTypes.string,
-    shopLocation: PropTypes.string,
+    name: PropTypes.string,
+    location: PropTypes.string,
     website: PropTypes.string,
-    image: PropTypes.string,
+    photo: PropTypes.string,
     id: PropTypes.number,
     // shopId: PropTypes.string,
   }).isRequired,

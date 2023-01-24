@@ -55,7 +55,7 @@ const viewArtistDetails = (id) => new Promise((resolve, reject) => {
 });
 
 const viewShopDetails = (id) => new Promise((resolve, reject) => {
-  fetch(`${clientCredentials.databseURL}/shops/${id}/`)
+  fetch(`${clientCredentials.databaseURL}/shops/${id}/`)
     .then((response) => response.json())
     .then(resolve)
     .catch(reject);
