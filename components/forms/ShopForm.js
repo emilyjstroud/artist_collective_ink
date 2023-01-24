@@ -8,10 +8,10 @@ import { createShop, updateShop } from '../../api/shopData';
 import { useAuth } from '../../utils/context/authContext';
 
 const initialState = {
-  shopName: '',
-  shopLocation: '',
+  name: '',
+  location: '',
   website: '',
-  image: '',
+  photo: '',
   id: '',
 };
 
@@ -50,16 +50,16 @@ function ShopForm({ obj }) {
       <title>Artist Collective Ink</title>
       <h2 className="text-black mt-5">{obj.id ? 'Update' : 'Create'} Shop</h2>
       <FloatingLabel controlId="floatingInput1" label="Shop Name" className="mb-3">
-        <Form.Control type="text" placeholder="Shop Name" name="shopName" value={shopFormInput.shopName} onChange={handleChange} required />
+        <Form.Control type="text" placeholder="Shop Name" name="name" value={shopFormInput.name} onChange={handleChange} required />
       </FloatingLabel>
       <FloatingLabel controlId="floatingInput1" label="Location" className="mb-3">
-        <Form.Control type="text" placeholder="Location" name="shopLocation" value={shopFormInput.shopLocation} onChange={handleChange} required />
+        <Form.Control type="text" placeholder="Location" name="location" value={shopFormInput.location} onChange={handleChange} required />
       </FloatingLabel>
       <FloatingLabel controlId="floatingInput1" label="Website" className="mb-3">
         <Form.Control type="text" placeholder="Website" name="website" value={shopFormInput.website} onChange={handleChange} required />
       </FloatingLabel>
       <FloatingLabel controlId="floatingInput2" label="Shop Image" className="mb-3">
-        <Form.Control type="url" placeholder="Enter an image url" name="image" value={shopFormInput.image} onChange={handleChange} required />
+        <Form.Control type="url" placeholder="Enter an image url" name="photo" value={shopFormInput.photo} onChange={handleChange} required />
       </FloatingLabel>
       <Button type="submit">{obj.id ? 'Update' : 'Create'} Shop</Button>
     </Form>
@@ -69,9 +69,10 @@ function ShopForm({ obj }) {
 // PROP TYPES
 ShopForm.propTypes = {
   obj: PropTypes.shape({
-    shopName: PropTypes.string,
-    shopLocation: PropTypes.string,
+    name: PropTypes.string,
+    location: PropTypes.string,
     website: PropTypes.string,
+    photo: PropTypes.string,
     id: PropTypes.number,
   }),
 };

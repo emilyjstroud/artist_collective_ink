@@ -49,11 +49,11 @@ const StyleForm = ({ styleObj }) => {
     <>
       <Form onSubmit={handleSubmit}>
         <Form.Group className="mb-3">
-          <h2 className="text-black mt-5">{styleObj.id ? 'Update' : 'Create'} Shop</h2>
-          <Form.Label>Style Name</Form.Label>
+          <h2 className="text-white mt-5">{styleObj.id ? 'Update' : 'Create'} Style</h2>
+          <Form.Label className="text-white">Style Name</Form.Label>
           <Form.Control name="name" required value={currentStyle.name} onChange={handleChange} />
         </Form.Group>
-        <Button type="submit">{styleObj.id ? 'Update' : 'Create'} Shop</Button>
+        <Button type="submit">{styleObj.id ? 'Update' : 'Create'} Style</Button>
       </Form>
     </>
   );

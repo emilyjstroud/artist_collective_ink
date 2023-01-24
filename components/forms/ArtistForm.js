@@ -9,10 +9,10 @@ import { createArtist, updateArtist } from '../../api/artistData';
 import { getShops } from '../../api/shopData';
 
 const initialState = {
-  artistName: '',
-  artistLocation: '',
-  igHandle: '',
-  image: '',
+  name: '',
+  location: '',
+  instagram: '',
+  artworkPhoto: '',
   shopId: '',
   id: '',
 };
@@ -56,16 +56,16 @@ function ArtistForm({ obj }) {
       <title>Artist Collective Ink</title>
       <h2 className="text-black mt-5">{obj.id ? 'Update' : 'Create'} Artist</h2>
       <FloatingLabel controlId="floatingInput1" label="Artist Name" className="mb-3">
-        <Form.Control type="text" placeholder="Artist's Name" name="artistName" value={artistFormInput.artistName} onChange={handleChange} required />
+        <Form.Control type="text" placeholder="Artist's Name" name="name" value={artistFormInput.name} onChange={handleChange} required />
       </FloatingLabel>
       <FloatingLabel controlId="floatingInput1" label="Artist Location" className="mb-3">
-        <Form.Control type="text" placeholder="Artist's Location" name="artistLocation" value={artistFormInput.artistLocation} onChange={handleChange} required />
+        <Form.Control type="text" placeholder="Artist's Location" name="location" value={artistFormInput.location} onChange={handleChange} required />
       </FloatingLabel>
       <FloatingLabel controlId="floatingInput1" label="Artist Instagram" className="mb-3">
-        <Form.Control type="text" placeholder="Artist's Instagram" name="igHandle" value={artistFormInput.igHandle} onChange={handleChange} required />
+        <Form.Control type="text" placeholder="Artist's Instagram" name="instagram" value={artistFormInput.instagram} onChange={handleChange} required />
       </FloatingLabel>
       <FloatingLabel controlId="floatingInput2" label="Artist Image" className="mb-3">
-        <Form.Control type="url" placeholder="Enter an image url" name="image" value={artistFormInput.image} onChange={handleChange} required />
+        <Form.Control type="url" placeholder="Enter an image url" name="artworkPhoto" value={artistFormInput.artworkPhoto} onChange={handleChange} required />
       </FloatingLabel>
       <FloatingLabel controlId="floatingSelect" label="Shop">
         <Form.Select
@@ -83,7 +83,7 @@ function ArtistForm({ obj }) {
                 key={shop.id}
                 value={shop.id}
               >
-                {shop.shopName}
+                {shop.shopId}
               </option>
             ))
           }
@@ -98,11 +98,11 @@ function ArtistForm({ obj }) {
 // PROP TYPES
 ArtistForm.propTypes = {
   obj: PropTypes.shape({
-    artistName: PropTypes.string,
-    artistLocation: PropTypes.string,
-    shopName: PropTypes.string,
-    igHandle: PropTypes.string,
-    image: PropTypes.string,
+    name: PropTypes.string,
+    location: PropTypes.string,
+    // shopName: PropTypes.string,
+    instagram: PropTypes.string,
+    artworkPhoto: PropTypes.string,
     shopId: PropTypes.number,
     id: PropTypes.number,
   }),
