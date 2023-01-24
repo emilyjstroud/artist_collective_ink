@@ -62,6 +62,12 @@ const getShops = () => new Promise((resolve, reject) => {
 });
 
 const createShop = (shopObj) => new Promise((resolve, reject) => {
+  // const shopObj = {
+  //   name: shop.name,
+  //   location: shop.location,
+  //   website: shop.website,
+  //   photo: shop.photo,
+  // };
   fetch(`${clientCredentials.databaseURL}/shops`, {
     method: 'POST',
     body: JSON.stringify(shopObj),

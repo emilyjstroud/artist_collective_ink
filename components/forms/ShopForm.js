@@ -12,11 +12,11 @@ const initialState = {
   location: '',
   website: '',
   photo: '',
-  id: '',
+  id: null,
   user: '',
 };
 
-function ShopForm({ user, obj }) {
+function ShopForm({ shopObj }) {
   const [shopFormInput, setShopFormInput] = useState(initialState);
   const router = useRouter();
   // const { user } = useAuth();
@@ -49,32 +49,32 @@ function ShopForm({ user, obj }) {
   // Re-Factored
   const handleSubmit = (e) => {
     e.preventDefault();
-    if (obj.id) {
-      updateShop(user, shopFormInput, obj.id).then(() => router.push('/shops'));
+    if (shopObj.id) {
+      updateShop(shopFormInput, shopObj.id).then(() => router.push('/shop'));
     } else {
-      createShop(shopFormInput).then(() => router.push('shops'));
+      createShop(shopFormInput).then(() => router.push('/shop'));
     }
   };
 
   const getAndSet = () => {
-    if (obj.id) {
-      setShopFormInput(obj);
+    if (shopObj.id) {
+      setShopFormInput(shopObj);
     }
-    const workAround = 'user';
-    setShopFormInput((prevState) => ({
-      ...prevState,
-      [workAround]: user.uid,
-    }));
+    // const workAround = 'user';
+    // setShopFormInput((prevState) => ({
+    //   ...prevState,
+    //   [workAround]: user.uid,
+    // }));
   };
 
   useEffect(() => {
     getAndSet();
-  }, [obj]);
+  }, [shopObj]);
 
   return (
     <Form onSubmit={handleSubmit}>
       <title>Artist Collective Ink</title>
-      <h2 className="text-black mt-5">{obj.id ? 'Update' : 'Create'} Shop</h2>
+      <h2 className="text-black mt-5">{shopObj.id ? 'Update' : 'Create'} Shop</h2>
       <FloatingLabel controlId="floatingInput1" label="Shop Name" className="mb-3">
         <Form.Control type="text" placeholder="Shop Name" name="name" value={shopFormInput.name} onChange={handleChange} required />
       </FloatingLabel>
@@ -87,18 +87,18 @@ function ShopForm({ user, obj }) {
       <FloatingLabel controlId="floatingInput2" label="Shop Image" className="mb-3">
         <Form.Control type="url" placeholder="Enter an image url" name="photo" value={shopFormInput.photo} onChange={handleChange} required />
       </FloatingLabel>
-      <Button type="submit">{obj.id ? 'Update' : 'Create'} Shop</Button>
+      <Button type="submit">{shopObj.id ? 'Update' : 'Create'} Shop</Button>
     </Form>
   );
 }
 
 // PROP TYPES -- New v
 ShopForm.propTypes = {
-  user: PropTypes.shape({
-    uid: PropTypes.string,
-  }).isRequired,
+  // user: PropTypes.shape({
+  //   uid: PropTypes.string,
+  // }).isRequired,
 
-  obj: PropTypes.shape({
+  shopObj: PropTypes.shape({
     // name: PropTypes.string,
     // location: PropTypes.string,
     // website: PropTypes.string,
@@ -109,7 +109,7 @@ ShopForm.propTypes = {
 
 // DEFAULT PROPS
 ShopForm.defaultProps = {
-  obj: initialState,
+  shopObj: initialState,
 };
 
 export default ShopForm;

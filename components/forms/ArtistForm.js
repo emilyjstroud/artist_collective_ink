@@ -13,11 +13,10 @@ const initialState = {
   location: '',
   instagram: '',
   artworkPhoto: '',
-  shopId: '',
-  id: '',
+  shopId: null,
 };
 
-function ArtistForm({ obj }) {
+function ArtistForm({ artistObj }) {
   const [artistFormInput, setArtistFormInput] = useState(initialState);
   const [shops, setShops] = useState([]);
 
@@ -27,8 +26,8 @@ function ArtistForm({ obj }) {
 
   useEffect(() => {
     getShops(user.uid).then(setShops);
-    if (obj.id) setArtistFormInput(obj);
-  }, [obj, user]);
+    if (artistObj.id) setArtistFormInput(artistObj);
+  }, [artistObj, user]);
 
   const handleChange = (e) => {
     const { name, value } = e.target;
@@ -40,9 +39,9 @@ function ArtistForm({ obj }) {
 
   const handleSubmit = (e) => {
     e.preventDefault();
-    if (obj.id) {
+    if (artistObj.id) {
       updateArtist(artistFormInput)
-        .then(() => router.push(`/artist/${obj.id}`));
+        .then(() => router.push(`/artist/${artistObj.id}`));
     } else {
       const payload = { ...artistFormInput, uid: user.uid };
       createArtist(payload).then(() => {
@@ -54,7 +53,7 @@ function ArtistForm({ obj }) {
   return (
     <Form onSubmit={handleSubmit}>
       <title>Artist Collective Ink</title>
-      <h2 className="text-black mt-5">{obj.id ? 'Update' : 'Create'} Artist</h2>
+      <h2 className="text-black mt-5">{artistObj.id ? 'Update' : 'Create'} Artist</h2>
       <FloatingLabel controlId="floatingInput1" label="Artist Name" className="mb-3">
         <Form.Control type="text" placeholder="Artist's Name" name="name" value={artistFormInput.name} onChange={handleChange} required />
       </FloatingLabel>
@@ -90,14 +89,14 @@ function ArtistForm({ obj }) {
         </Form.Select>
       </FloatingLabel>
 
-      <Button type="submit">{obj.id ? 'Update' : 'Create'} Artist</Button>
+      <Button type="submit">{artistObj.id ? 'Update' : 'Create'} Artist</Button>
     </Form>
   );
 }
 
 // PROP TYPES
 ArtistForm.propTypes = {
-  obj: PropTypes.shape({
+  artistObj: PropTypes.shape({
     name: PropTypes.string,
     location: PropTypes.string,
     // shopName: PropTypes.string,
@@ -110,7 +109,7 @@ ArtistForm.propTypes = {
 
 // DEFAULT PROPS
 ArtistForm.defaultProps = {
-  obj: initialState,
+  artistObj: initialState,
 };
 
 export default ArtistForm;

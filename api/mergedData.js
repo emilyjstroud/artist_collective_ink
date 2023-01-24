@@ -40,8 +40,8 @@ import { clientCredentials } from '../utils/client';
 //   }).catch((error) => reject(error));
 // });
 
-const getArtistsWithShop = (shopId) => new Promise((resolve, reject) => {
-  fetch(`${clientCredentials.databaseURL}/artists/${shopId}`)
+const getArtistsWithShop = (id) => new Promise((resolve, reject) => {
+  fetch(`${clientCredentials.databaseURL}/artists?shop=${id}`)
     .then((response) => response.json())
     .then(resolve)
     .catch(reject);

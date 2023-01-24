@@ -1,6 +1,6 @@
 import { clientCredentials } from '../utils/client';
 
-const dbUrl = clientCredentials.databseURL;
+const dbUrl = clientCredentials.databaseURL;
 
 const getAllUsers = () => new Promise((resolve, reject) => {
   fetch(`${dbUrl}/users`)
