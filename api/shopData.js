@@ -99,7 +99,7 @@ const getSingleShop = (id) => new Promise((resolve, reject) => {
 });
 
 const getShopArtists = (id) => new Promise((resolve, reject) => {
-  fetch(`${clientCredentials}/artists?orderBy="shopId"&equalTo="${id}"`)
+  fetch(`${clientCredentials.databaseURL}/artists?orderBy="shopId"&equalTo="${id}"`)
     .then((response) => resolve(response.json()))
     .catch((error) => reject(error));
 });

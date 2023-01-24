@@ -3,6 +3,7 @@ import PropTypes from 'prop-types';
 import { useRouter } from 'next/router';
 import { Button, Form } from 'react-bootstrap';
 import { createStyle, updateStyle } from '../../api/styleData';
+import { useAuth } from '../../utils/context/authContext';
 
 const initialState = {
   name: '',
@@ -12,6 +13,11 @@ const StyleForm = ({ styleObj }) => {
   const [currentStyle, setCurrentStyle] = useState(initialState);
 
   const router = useRouter();
+  const { user } = useAuth();
+
+  useEffect(() => {
+    if (styleObj.id) setCurrentStyle(styleObj);
+  }, [styleObj, user]);
 
   const handleChange = (e) => {
     const { name, value } = e.target;
@@ -30,25 +36,24 @@ const StyleForm = ({ styleObj }) => {
     }
   };
 
-  const getAndSet = () => {
-    if (styleObj.id) {
-      setCurrentStyle(styleObj);
-    }
-  };
-  useEffect(() => {
-    getAndSet();
-  }, [styleObj]);
+  // const getAndSet = () => {
+  //   if (styleObj.id) {
+  //     setCurrentStyle(styleObj);
+  //   }
+  // };
+  // useEffect(() => {
+  //   getAndSet();
+  // }, [styleObj]);
 
   return (
     <>
       <Form onSubmit={handleSubmit}>
         <Form.Group className="mb-3">
+          <h2 className="text-black mt-5">{styleObj.id ? 'Update' : 'Create'} Shop</h2>
           <Form.Label>Style Name</Form.Label>
           <Form.Control name="name" required value={currentStyle.name} onChange={handleChange} />
         </Form.Group>
-        <Button variant="primary" type="submit">{styleObj.id ? 'Update' : 'Create'}
-          Submit
-        </Button>
+        <Button type="submit">{styleObj.id ? 'Update' : 'Create'} Shop</Button>
       </Form>
     </>
   );

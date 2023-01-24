@@ -1,6 +1,4 @@
 import { clientCredentials } from '../utils/client';
-import { getArtists } from './artistData';
-import { getSingleShop } from './shopData';
 // import { deleteArtist, getArtists } from './artistData';
 // import { getShopArtists, deleteShop } from './shopData';
 
@@ -35,11 +33,18 @@ import { getSingleShop } from './shopData';
 // });
 
 // GET All ARISTS WITH SHOP NAME
-const getArtistsWithShop = (uid) => new Promise((resolve, reject) => {
-  getArtists(uid).then((artistsArray) => {
-    const artistPromises = artistsArray.map((artistObj) => getSingleShop(artistObj.shopId).then((singleShop) => ({ ...artistObj, shopName: singleShop.shopName })));
-    Promise.all(artistPromises).then(resolve);
-  }).catch((error) => reject(error));
+// const getArtistsWithShop = (uid) => new Promise((resolve, reject) => {
+//   getArtists(uid).then((artistsArray) => {
+//     const artistPromises = artistsArray.map((artistObj) => getSingleShop(artistObj.shopId).then((singleShop) => ({ ...artistObj, shopName: singleShop.shopName })));
+//     Promise.all(artistPromises).then(resolve);
+//   }).catch((error) => reject(error));
+// });
+
+const getArtistsWithShop = (shopId) => new Promise((resolve, reject) => {
+  fetch(`${clientCredentials.databaseURL}/artists/${shopId}`)
+    .then((response) => response.json())
+    .then(resolve)
+    .catch(reject);
 });
 
 const viewArtistDetails = (id) => new Promise((resolve, reject) => {
