@@ -1,5 +1,5 @@
 import React from 'react';
-import StyleForm from '../../../components/forms/StyleForm';
+import StyleForm from '../../components/forms/StyleForm';
 // import { useAuth } from '../../../utils/context/authContext';
 
 export default function NewStyle() {

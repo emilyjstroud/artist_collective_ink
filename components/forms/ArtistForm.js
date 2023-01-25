@@ -13,7 +13,8 @@ const initialState = {
   location: '',
   instagram: '',
   artworkPhoto: '',
-  shopId: null,
+  shopId: 1,
+  id: 1,
 };
 
 function ArtistForm({ artistObj }) {

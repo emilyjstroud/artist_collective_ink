@@ -17,11 +17,12 @@ function Styles() {
   return (
     <>
       <Button
+        className="btn btn-danger"
         onClick={() => {
           router.push('/style/new');
         }}
       >
-        New Style
+        Add a Style
       </Button>
       <article className="styles">
         <h1 style={{ color: 'white' }}>Styles</h1>

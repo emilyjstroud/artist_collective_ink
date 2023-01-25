@@ -6,6 +6,7 @@ import { createStyle, updateStyle } from '../../api/styleData';
 import { useAuth } from '../../utils/context/authContext';
 
 const initialState = {
+  id: 1,
   name: '',
 };
 
@@ -17,6 +18,7 @@ const StyleForm = ({ styleObj }) => {
 
   useEffect(() => {
     if (styleObj.id) setCurrentStyle(styleObj);
+    console.warn(styleObj.id);
   }, [styleObj, user]);
 
   const handleChange = (e) => {

@@ -5,21 +5,21 @@ import Form from 'react-bootstrap/Form';
 import FloatingLabel from 'react-bootstrap/FloatingLabel';
 import Button from 'react-bootstrap/Button';
 import { createShop, updateShop } from '../../api/shopData';
-// import { useAuth } from '../../utils/context/authContext';
+import { useAuth } from '../../utils/context/authContext';
 
 const initialState = {
   name: '',
   location: '',
   website: '',
   photo: '',
-  id: null,
-  user: '',
+  id: 1,
+  user: 1,
 };
 
 function ShopForm({ shopObj }) {
   const [shopFormInput, setShopFormInput] = useState(initialState);
   const router = useRouter();
-  // const { user } = useAuth();
+  const { user } = useAuth();
 
   // useEffect(() => {
   //   if (obj.id) setShopFormInput(obj);
@@ -69,7 +69,8 @@ function ShopForm({ shopObj }) {
 
   useEffect(() => {
     getAndSet();
-  }, [shopObj]);
+    console.warn(shopObj.id);
+  }, [shopObj, user]);
 
   return (
     <Form onSubmit={handleSubmit}>
@@ -98,12 +99,28 @@ ShopForm.propTypes = {
   //   uid: PropTypes.string,
   // }).isRequired,
 
+  //   shopObj: PropTypes.shape({
+  //     name: PropTypes.string,
+  //     location: PropTypes.string,
+  //     website: PropTypes.string,
+  //     photo: PropTypes.string,
+  //     id: PropTypes.number,
+  //   }),
+  // };
+
   shopObj: PropTypes.shape({
-    // name: PropTypes.string,
-    // location: PropTypes.string,
-    // website: PropTypes.string,
-    // photo: PropTypes.string,
     id: PropTypes.number,
+    user: PropTypes.shape({
+      id: PropTypes.number,
+      uid: PropTypes.string,
+      firstName: PropTypes.string,
+      last_name: PropTypes.string,
+      email: PropTypes.string,
+    }),
+    name: PropTypes.string,
+    location: PropTypes.string,
+    website: PropTypes.string,
+    photo: PropTypes.string,
   }),
 };
 
