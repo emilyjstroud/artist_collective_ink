@@ -1,4 +1,5 @@
 import { clientCredentials } from '../utils/client';
+import { getSingleShop } from './shopData';
 // import { deleteArtist, getArtists } from './artistData';
 // import { getShopArtists, deleteShop } from './shopData';
 
@@ -40,11 +41,28 @@ import { clientCredentials } from '../utils/client';
 //   }).catch((error) => reject(error));
 // });
 
-const getArtistsWithShop = (id) => new Promise((resolve, reject) => {
-  fetch(`${clientCredentials.databaseURL}/artists?shop=${id}`)
+// const getArtistsWithShop = (id) => new Promise((resolve, reject) => {
+//   fetch(`${clientCredentials.databaseURL}/artists?shop=${id}`)
+//     .then((response) => response.json())
+//     .then(resolve)
+//     .catch(reject);
+// });
+
+const getArtistsWithShop = (shopId) => new Promise((resolve, reject) => {
+  fetch(`${clientCredentials.databaseURL}/artists?shopId=${shopId}`)
     .then((response) => response.json())
     .then(resolve)
     .catch(reject);
+});
+
+const getShopDetailsWithArtist = (shopId) => new Promise((resolve, reject) => {
+  getSingleShop(shopId)
+    .then((shopData) => {
+      getArtistsWithShop(shopId)
+        .then((artistData) => {
+          resolve({ shopData, artistData });
+        });
+    }).catch((error) => reject(error));
 });
 
 const viewArtistDetails = (id) => new Promise((resolve, reject) => {
@@ -74,5 +92,6 @@ export {
   viewShopDetails,
   deleteShopArtists,
   getArtistsWithShop,
+  getShopDetailsWithArtist,
   // getArtistsByName,
 };

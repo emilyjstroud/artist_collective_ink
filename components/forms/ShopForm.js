@@ -5,7 +5,7 @@ import Form from 'react-bootstrap/Form';
 import FloatingLabel from 'react-bootstrap/FloatingLabel';
 import Button from 'react-bootstrap/Button';
 import { createShop, updateShop } from '../../api/shopData';
-import { useAuth } from '../../utils/context/authContext';
+// import { useAuth } from '../../utils/context/authContext';
 
 const initialState = {
   name: '',
@@ -16,10 +16,10 @@ const initialState = {
   user: 1,
 };
 
-function ShopForm({ shopObj }) {
+function ShopForm({ user, shopObj }) {
   const [shopFormInput, setShopFormInput] = useState(initialState);
   const router = useRouter();
-  const { user } = useAuth();
+  // const { user } = useAuth();
 
   // useEffect(() => {
   //   if (obj.id) setShopFormInput(obj);
@@ -50,7 +50,7 @@ function ShopForm({ shopObj }) {
   const handleSubmit = (e) => {
     e.preventDefault();
     if (shopObj.id) {
-      updateShop(shopFormInput, shopObj.id).then(() => router.push('/shop'));
+      updateShop(user, shopFormInput, shopObj.id).then(() => router.push('/shop'));
     } else {
       createShop(shopFormInput).then(() => router.push('/shop'));
     }
@@ -70,7 +70,7 @@ function ShopForm({ shopObj }) {
   useEffect(() => {
     getAndSet();
     console.warn(shopObj.id);
-  }, [shopObj, user]);
+  }, [shopObj]);
 
   return (
     <Form onSubmit={handleSubmit}>
@@ -95,34 +95,48 @@ function ShopForm({ shopObj }) {
 
 // PROP TYPES -- New v
 ShopForm.propTypes = {
-  // user: PropTypes.shape({
-  //   uid: PropTypes.string,
-  // }).isRequired,
-
-  //   shopObj: PropTypes.shape({
-  //     name: PropTypes.string,
-  //     location: PropTypes.string,
-  //     website: PropTypes.string,
-  //     photo: PropTypes.string,
-  //     id: PropTypes.number,
-  //   }),
-  // };
+  user: PropTypes.shape({
+    uid: PropTypes.string,
+  }).isRequired,
 
   shopObj: PropTypes.shape({
+    // user: PropTypes.number,
+    // name: PropTypes.string,
+    // location: PropTypes.string,
+    // website: PropTypes.string,
+    // photo: PropTypes.string,
     id: PropTypes.number,
-    user: PropTypes.shape({
-      id: PropTypes.number,
-      uid: PropTypes.string,
-      firstName: PropTypes.string,
-      last_name: PropTypes.string,
-      email: PropTypes.string,
-    }),
-    name: PropTypes.string,
-    location: PropTypes.string,
-    website: PropTypes.string,
-    photo: PropTypes.string,
   }),
 };
+
+//   shopObj: PropTypes.shape({
+//     id: PropTypes.number,
+//     user: PropTypes.shape({
+//       id: PropTypes.number,
+//       uid: PropTypes.string,
+//       firstName: PropTypes.string,
+//       lastName: PropTypes.string,
+//       email: PropTypes.string,
+//     }),
+//     name: PropTypes.string,
+//     location: PropTypes.string,
+//     website: PropTypes.string,
+//     photo: PropTypes.string,
+//     style: PropTypes.shape({
+//       id: PropTypes.number,
+//       name: PropTypes.string,
+//     }),
+//     artist: PropTypes.shape({
+//       id: PropTypes.number,
+//       name: PropTypes.string,
+//       location: PropTypes.string,
+//       instagram: PropTypes.string,
+//       artworkPhoto: PropTypes.string,
+//       shopId: PropTypes.number,
+//       styleId: PropTypes.number,
+//     }),
+//   }),
+// };
 
 // DEFAULT PROPS
 ShopForm.defaultProps = {

@@ -55,6 +55,10 @@ const getArtists = () => new Promise((resolve, reject) => {
 });
 
 const createArtist = (artistObj) => new Promise((resolve, reject) => {
+  // const artistObj = {
+  //   shop: artist.shop_id,
+
+  // }
   fetch(`${clientCredentials.databaseURL}/artists`, {
     method: 'POST',
     body: JSON.stringify(artistObj),
