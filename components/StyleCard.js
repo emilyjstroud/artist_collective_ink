@@ -1,9 +1,9 @@
-import React from 'react';
+import React, { useEffect } from 'react';
 import PropTypes from 'prop-types';
 import Card from 'react-bootstrap/Card';
 import Button from 'react-bootstrap/Button';
 import Link from 'next/link';
-import { deleteStyle } from '../api/styleData';
+import { deleteStyle, getAllStyles } from '../api/styleData';
 
 export default function StyleCard({
   id, name, onUpdate,
@@ -14,6 +14,11 @@ export default function StyleCard({
       window.location.reload();
     }
   };
+
+  useEffect(() => {
+    getAllStyles();
+  }, []);
+  // console.warn(styleObj);
 
   return (
     <>
@@ -34,7 +39,7 @@ export default function StyleCard({
 }
 
 StyleCard.propTypes = {
-  id: PropTypes.number.isRequired,
   name: PropTypes.string.isRequired,
+  id: PropTypes.number.isRequired,
   onUpdate: PropTypes.func.isRequired,
 };

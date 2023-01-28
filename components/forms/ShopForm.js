@@ -12,7 +12,7 @@ const initialState = {
   location: '',
   website: '',
   photo: '',
-  id: 1,
+  id: null,
   user: 1,
 };
 
@@ -35,7 +35,7 @@ function ShopForm({ user, shopObj }) {
 
   // const handleSubmit = (e) => {
   //   e.preventDefault();
-  //   if (obj.id) {
+  //   if (shopObj.id) {
   //     updateShop(shopFormInput)
   //       .then(() => router.push('/shop'));
   //   } else {
@@ -101,10 +101,10 @@ ShopForm.propTypes = {
 
   shopObj: PropTypes.shape({
     // user: PropTypes.number,
-    // name: PropTypes.string,
-    // location: PropTypes.string,
-    // website: PropTypes.string,
-    // photo: PropTypes.string,
+    name: PropTypes.string,
+    location: PropTypes.string,
+    website: PropTypes.string,
+    photo: PropTypes.string,
     id: PropTypes.number,
   }),
 };

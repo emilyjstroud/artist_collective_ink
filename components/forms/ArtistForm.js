@@ -4,31 +4,54 @@ import Form from 'react-bootstrap/Form';
 import FloatingLabel from 'react-bootstrap/FloatingLabel';
 import Button from 'react-bootstrap/Button';
 import PropTypes from 'prop-types';
-import { useAuth } from '../../utils/context/authContext';
+// import { useAuth } from '../../utils/context/authContext';
 import { createArtist, updateArtist } from '../../api/artistData';
 import { getShops } from '../../api/shopData';
+import { getAllStyles } from '../../api/styleData';
 
 const initialState = {
   name: '',
   location: '',
   instagram: '',
   artworkPhoto: '',
-  shopId: 1,
-  id: 1,
+  shopId: null,
+  styleId: null,
+  id: null,
 };
+// id: null,
+// artist: {(
+// name: '',
+// location: '',
+// instagram: '',
+// artworkPhoto: '',
+// shopId: null,
+// id: null,
+// }),
+// name: '',
+// location: '',
+// photo: '',
+// };
 
 function ArtistForm({ artistObj }) {
   const [artistFormInput, setArtistFormInput] = useState(initialState);
   const [shops, setShops] = useState([]);
+  const [styles, setStyles] = useState([]);
 
   const router = useRouter();
 
-  const { user } = useAuth();
+  // const { user } = useAuth();
 
+  // useEffect(() => {
+  //   getShops(user.uid).then(setShops);
+  //   if (artistObj.id) setArtistFormInput(artistObj);
+  // }, [artistObj, user]);
+
+  // Re-Factored
   useEffect(() => {
-    getShops(user.uid).then(setShops);
-    if (artistObj.id) setArtistFormInput(artistObj);
-  }, [artistObj, user]);
+    getShops().then(setShops);
+    getAllStyles().then(setStyles);
+    if (artistObj.id) setArtistFormInput();
+  }, [artistObj]);
 
   const handleChange = (e) => {
     const { name, value } = e.target;
@@ -38,14 +61,28 @@ function ArtistForm({ artistObj }) {
     }));
   };
 
+  // const handleSubmit = (e) => {
+  //   e.preventDefault();
+  //   if (artistObj.id) {
+  //     updateArtist(artistFormInput)
+  //       .then(() => router.push(`/artist/${artistObj.id}`));
+  //   } else {
+  //     const payload = { ...artistFormInput, uid: user.uid };
+  //     createArtist(payload).then(() => {
+  //       router.push('/artist');
+  //     });
+  //   }
+  // };
+
+  // Re-Factored
   const handleSubmit = (e) => {
     e.preventDefault();
     if (artistObj.id) {
-      updateArtist(artistFormInput)
+      updateArtist(artistFormInput, artistObj.id)
         .then(() => router.push(`/artist/${artistObj.id}`));
     } else {
-      const payload = { ...artistFormInput, uid: user.uid };
-      createArtist(payload).then(() => {
+      // const payload = { ...artistFormInput, uid: user.uid };
+      createArtist(artistFormInput).then(() => {
         router.push('/artist');
       });
     }
@@ -71,6 +108,7 @@ function ArtistForm({ artistObj }) {
         <Form.Select
           aria-label="Shop"
           name="shopId"
+          // defaultValue={shopId}
           onChange={handleChange}
           className="mb-3"
           value={artistFormInput.shopId}
@@ -82,8 +120,33 @@ function ArtistForm({ artistObj }) {
               <option
                 key={shop.id}
                 value={shop.id}
+                // defaultValue={shop.id === artistFormInput.shopId}
               >
-                {shop.shopId}
+                {shop.name}
+              </option>
+            ))
+          }
+        </Form.Select>
+      </FloatingLabel>
+      <FloatingLabel controlId="floatingSelect" label="Shop">
+        <Form.Select
+          aria-label="Style"
+          name="styleId"
+          // defaultValue={shopId}
+          onChange={handleChange}
+          className="mb-3"
+          value={artistFormInput.styleId}
+          required
+        >
+          <option value="">Select a Style</option>
+          {
+            styles.map((style) => (
+              <option
+                key={style.id}
+                value={style.id}
+                // defaultValue={shop.id === artistFormInput.shopId}
+              >
+                {style.name}
               </option>
             ))
           }
@@ -96,15 +159,38 @@ function ArtistForm({ artistObj }) {
 }
 
 // PROP TYPES
+// ArtistForm.propTypes = {
+//   artistObj: PropTypes.shape({
+//     name: PropTypes.string,
+//     location: PropTypes.string,
+//     // shopName: PropTypes.string,
+//     instagram: PropTypes.string,
+//     artworkPhoto: PropTypes.string,
+//     shopId: PropTypes.number,
+//     id: PropTypes.number,
+//   }),
+// };
+
+// Re-Factored
 ArtistForm.propTypes = {
+  user: PropTypes.shape({
+    uid: PropTypes.string,
+  }).isRequired,
   artistObj: PropTypes.shape({
-    name: PropTypes.string,
-    location: PropTypes.string,
-    // shopName: PropTypes.string,
-    instagram: PropTypes.string,
-    artworkPhoto: PropTypes.string,
-    shopId: PropTypes.number,
     id: PropTypes.number,
+    artist: PropTypes.shape({
+      name: PropTypes.string,
+      location: PropTypes.string,
+      // shopName: PropTypes.string,
+      instagram: PropTypes.string,
+      artworkPhoto: PropTypes.string,
+      shopId: PropTypes.number,
+      styleId: PropTypes.number,
+      id: PropTypes.number,
+    }),
+    name: PropTypes.string,
+    photo: PropTypes.string,
+    location: PropTypes.string,
   }),
 };
 

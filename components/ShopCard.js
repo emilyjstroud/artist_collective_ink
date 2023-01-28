@@ -3,13 +3,13 @@ import PropTypes from 'prop-types';
 import Card from 'react-bootstrap/Card';
 import Button from 'react-bootstrap/Button';
 import Link from 'next/link';
-import { getShops } from '../api/shopData';
-import { deleteShopArtists } from '../api/mergedData';
+import { deleteShop, getShops } from '../api/shopData';
+// import { deleteShopArtists } from '../api/mergedData';
 
 function ShopCard({ shopObj, onUpdate }) {
   const deleteThisShop = () => {
     if (window.confirm(`Delete ${shopObj.name}?`)) {
-      deleteShopArtists(shopObj.id).then(() => onUpdate());
+      deleteShop(shopObj.id).then(() => onUpdate());
     }
   };
 
