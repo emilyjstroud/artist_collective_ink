@@ -9,8 +9,8 @@ const getAllUsers = () => new Promise((resolve, reject) => {
     .catch(reject);
 });
 
-const getUser = (userId) => new Promise((resolve, reject) => {
-  fetch(`${dbUrl}/users/${userId}`)
+const getUser = (id) => new Promise((resolve, reject) => {
+  fetch(`${dbUrl}/users/${id}`)
     .then((response) => response.json())
     .then(resolve)
     .catch(reject);

@@ -61,13 +61,14 @@ const getShops = () => new Promise((resolve, reject) => {
     .then(reject);
 });
 
-const createShop = (shopObj) => new Promise((resolve, reject) => {
-  // const shopObj = {
-  //   name: shop.name,
-  //   location: shop.location,
-  //   website: shop.website,
-  //   photo: shop.photo,
-  // };
+const createShop = (shop) => new Promise((resolve, reject) => {
+  const shopObj = {
+    user: shop.user,
+    name: shop.name,
+    location: shop.location,
+    website: shop.website,
+    photo: shop.photo,
+  };
   fetch(`${clientCredentials.databaseURL}/shops`, {
     method: 'POST',
     body: JSON.stringify(shopObj),
@@ -88,11 +89,19 @@ const deleteShop = (id) => new Promise((resolve, reject) => {
     .catch((error) => reject(error));
 });
 
-const updateShop = (data, id) => new Promise((resolve, reject) => {
-  fetch(`${clientCredentials.databaseURL}/shops/${id}`, {
+const updateShop = (shop) => new Promise((resolve, reject) => {
+  const shopObj = {
+    id: shop.id,
+    user: shop.user,
+    name: shop.name,
+    location: shop.location,
+    website: shop.website,
+    photo: shop.photo,
+  };
+  fetch(`${clientCredentials.databaseURL}/shops/${shop.id}`, {
     method: 'PUT',
     headers: { 'Content-Type': 'application' },
-    body: JSON.stringify(data),
+    body: JSON.stringify(shopObj),
   })
     .then((response) => resolve(response))
     .catch((error) => reject(error));
@@ -100,7 +109,17 @@ const updateShop = (data, id) => new Promise((resolve, reject) => {
 
 const getSingleShop = (id) => new Promise((resolve, reject) => {
   fetch(`${clientCredentials.databaseURL}/shops/${id}`)
-    .then((response) => resolve(response.json()))
+    .then((response) => response.json())
+    .then((data) => {
+      resolve({
+        id: data.id,
+        user: data.user,
+        name: data.name,
+        location: data.location,
+        website: data.website,
+        photo: data.photo,
+      });
+    })
     .catch((error) => reject(error));
 });
 

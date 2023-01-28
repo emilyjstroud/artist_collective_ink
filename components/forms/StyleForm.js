@@ -3,7 +3,7 @@ import PropTypes from 'prop-types';
 import { useRouter } from 'next/router';
 import { Button, Form } from 'react-bootstrap';
 import { createStyle, updateStyle } from '../../api/styleData';
-import { useAuth } from '../../utils/context/authContext';
+// import { useAuth } from '../../utils/context/authContext';
 
 const initialState = {
   id: 1,
@@ -14,12 +14,12 @@ const StyleForm = ({ styleObj }) => {
   const [currentStyle, setCurrentStyle] = useState(initialState);
 
   const router = useRouter();
-  const { user } = useAuth();
+  // const { user } = useAuth();
 
   useEffect(() => {
     if (styleObj.id) setCurrentStyle(styleObj);
     console.warn(styleObj.id);
-  }, [styleObj, user]);
+  }, [styleObj]);
 
   const handleChange = (e) => {
     const { name, value } = e.target;
@@ -32,7 +32,7 @@ const StyleForm = ({ styleObj }) => {
   const handleSubmit = (e) => {
     e.preventDefault();
     if (styleObj.id) {
-      updateStyle(currentStyle, styleObj.id).then(() => router.push('/style'));
+      updateStyle(currentStyle).then(() => router.push('/style'));
     } else {
       createStyle(currentStyle).then(() => router.push('/style'));
     }

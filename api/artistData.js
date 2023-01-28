@@ -54,11 +54,16 @@ const getArtists = () => new Promise((resolve, reject) => {
     .then(reject);
 });
 
-const createArtist = (artistObj) => new Promise((resolve, reject) => {
-  // const artistObj = {
-  //   shop: artist.shop_id,
-
-  // }
+const createArtist = (data) => new Promise((resolve, reject) => {
+  const artistObj = {
+    id: data.id,
+    shop: data.shop_id,
+    style: data.style_id,
+    name: data.name,
+    location: data.location,
+    instagram: data.instagram,
+    artworkPhoto: data.artworkPhoto,
+  };
   fetch(`${clientCredentials.databaseURL}/artists`, {
     method: 'POST',
     body: JSON.stringify(artistObj),
@@ -79,25 +84,47 @@ const deleteArtist = (id) => new Promise((resolve, reject) => {
     .catch((error) => reject(error));
 });
 
-const updateArtist = (data, id) => new Promise((resolve, reject) => {
-  fetch(`${clientCredentials.databaseURL}/artists/${id}`, {
+const updateArtist = (artist) => new Promise((resolve, reject) => {
+  const artistObj = {
+    id: artist.id,
+    shop: artist.shop_id,
+    style: artist.style_id,
+    name: artist.name,
+    location: artist.location,
+    instagram: artist.instagram,
+    artworkPhoto: artist.artwork_photo,
+  };
+  fetch(`${clientCredentials.databaseURL}/artists/${artist.id}`, {
     method: 'PUT',
     headers: { 'Content-Type': 'application' },
-    body: JSON.stringify(data),
+    body: JSON.stringify(artistObj),
   })
     .then((response) => resolve(response))
     .catch((error) => reject(error));
 });
 
-const getSingleArtist = (artistObj) => new Promise((resolve, reject) => {
-  fetch(`${clientCredentials.databaseURL}/artists`, {
-    method: 'POST',
-    body: JSON.stringify(artistObj),
-    headers: {
-      'content-type': 'applicstion/json',
-    },
-  })
-    .then((response) => resolve(response.json()))
+const getSingleArtist = (id) => new Promise((resolve, reject) => {
+  fetch(`${clientCredentials.databaseURL}/artists/${id}`)
+  // , {
+  //   method: 'POST',
+  //   body: JSON.stringify(artistObj),
+  //   headers: {
+  //     'content-type': 'applicstion/json',
+  //   },
+  // });
+    // .then((response) => resolve(response.json()))
+    .then((response) => response.json())
+    .then((data) => {
+      resolve({
+        id: data.id,
+        shop: data.shop_id,
+        style: data.style_id,
+        name: data.name,
+        location: data.location,
+        instagram: data.instagram,
+        artworkPhoto: data.artwork_photo,
+      });
+    })
     .catch((error) => reject(error));
 });
 

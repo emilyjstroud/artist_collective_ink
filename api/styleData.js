@@ -9,7 +9,15 @@ const getAllStyles = () => new Promise((resolve, reject) => {
 
 const getSingleStyle = (id) => new Promise((resolve, reject) => {
   fetch(`${clientCredentials.databaseURL}/styles/${id}`)
-    .then((response) => resolve(response.json()))
+    // .then((response) => resolve(response.json()))
+    .then((response) => response.json())
+    .then((data) => {
+      resolve({
+        id: data.id,
+        shop: data.shop_id,
+        name: data.name,
+      });
+    })
     .catch((error) => reject(error));
 });
 
@@ -19,7 +27,12 @@ const getStyleByArtistId = (ArtistId) => new Promise((resolve, reject) => {
     .catch((error) => reject(error));
 });
 
-const createStyle = (styleObj) => new Promise((resolve, reject) => {
+const createStyle = (style) => new Promise((resolve, reject) => {
+  const styleObj = {
+    id: style.id,
+    shop: style.shop_id,
+    name: style.name,
+  };
   fetch(`${clientCredentials.databaseURL}/styles`, {
     method: 'POST',
     body: JSON.stringify(styleObj),
@@ -31,11 +44,16 @@ const createStyle = (styleObj) => new Promise((resolve, reject) => {
     .catch((error) => reject(error));
 });
 
-const updateStyle = (data, id) => new Promise((resolve, reject) => {
+const updateStyle = (style, id) => new Promise((resolve, reject) => {
+  const styleObj = {
+    id: style.id,
+    shop: style.shop_id,
+    name: style.name,
+  };
   fetch(`${clientCredentials.databaseURL}/styles/${id}`, {
     method: 'PUT',
     headers: { 'Content-Type': 'application' },
-    body: JSON.stringify(data),
+    body: JSON.stringify(styleObj),
   })
     .then((response) => resolve(response))
     .catch((error) => reject(error));
