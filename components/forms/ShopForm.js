@@ -12,7 +12,6 @@ const initialState = {
   location: '',
   website: '',
   photo: '',
-  id: null,
   user: 1,
 };
 
@@ -21,9 +20,10 @@ function ShopForm({ user, shopObj }) {
   const router = useRouter();
   // const { user } = useAuth();
 
-  // useEffect(() => {
-  //   if (obj.id) setShopFormInput(obj);
-  // }, [obj, user]);
+  useEffect(() => {
+    if (shopObj.id) setShopFormInput(shopObj);
+    console.warn(shopObj);
+  }, [shopObj, user]);
 
   const handleChange = (e) => {
     const { name, value } = e.target;
@@ -49,28 +49,35 @@ function ShopForm({ user, shopObj }) {
   // Re-Factored
   const handleSubmit = (e) => {
     e.preventDefault();
+    const payload = {
+      user: shopFormInput.user,
+      name: shopFormInput.name,
+      location: shopFormInput.location,
+      website: shopFormInput.website,
+      photo: shopFormInput.photo,
+    };
     if (shopObj.id) {
-      updateShop(user, shopFormInput, shopObj.id).then(() => router.push('/shop'));
+      updateShop(payload, shopObj.id).then(() => router.push('/shop'));
     } else {
       createShop(shopFormInput).then(() => router.push('/shop'));
     }
   };
 
-  const getAndSet = () => {
-    if (shopObj.id) {
-      setShopFormInput(shopObj);
-    }
-    // const workAround = 'user';
-    // setShopFormInput((prevState) => ({
-    //   ...prevState,
-    //   [workAround]: user.uid,
-    // }));
-  };
+  // const getAndSet = () => {
+  //   if (shopObj.id) {
+  //     setShopFormInput(shopObj);
+  //   }
+  // const workAround = 'user';
+  // setShopFormInput((prevState) => ({
+  //   ...prevState,
+  //   [workAround]: user.uid,
+  // }));
+  // };
 
-  useEffect(() => {
-    getAndSet();
-    console.warn(shopObj.id);
-  }, [shopObj]);
+  // useEffect(() => {
+  //   getAndSet();
+  //   console.warn(shopObj.id);
+  // }, [shopObj]);
 
   return (
     <Form onSubmit={handleSubmit}>
@@ -101,11 +108,11 @@ ShopForm.propTypes = {
 
   shopObj: PropTypes.shape({
     // user: PropTypes.number,
+    id: PropTypes.number,
     name: PropTypes.string,
     location: PropTypes.string,
     website: PropTypes.string,
     photo: PropTypes.string,
-    id: PropTypes.number,
   }),
 };
 

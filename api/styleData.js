@@ -14,7 +14,6 @@ const getSingleStyle = (id) => new Promise((resolve, reject) => {
     .then((data) => {
       resolve({
         id: data.id,
-        shop: data.shop_id,
         name: data.name,
       });
     })
@@ -29,8 +28,6 @@ const getStyleByArtistId = (ArtistId) => new Promise((resolve, reject) => {
 
 const createStyle = (style) => new Promise((resolve, reject) => {
   const styleObj = {
-    id: style.id,
-    shop: style.shop_id,
     name: style.name,
   };
   fetch(`${clientCredentials.databaseURL}/styles`, {
@@ -47,12 +44,11 @@ const createStyle = (style) => new Promise((resolve, reject) => {
 const updateStyle = (style, id) => new Promise((resolve, reject) => {
   const styleObj = {
     id: style.id,
-    shop: style.shop_id,
     name: style.name,
   };
   fetch(`${clientCredentials.databaseURL}/styles/${id}`, {
     method: 'PUT',
-    headers: { 'Content-Type': 'application' },
+    headers: { 'Content-Type': 'application/json' },
     body: JSON.stringify(styleObj),
   })
     .then((response) => resolve(response))

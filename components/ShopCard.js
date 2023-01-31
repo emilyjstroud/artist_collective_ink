@@ -46,7 +46,6 @@ ShopCard.propTypes = {
     website: PropTypes.string,
     photo: PropTypes.string,
     id: PropTypes.number,
-    // shopId: PropTypes.string,
   }).isRequired,
   onUpdate: PropTypes.func.isRequired,
 };

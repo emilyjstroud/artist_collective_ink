@@ -89,18 +89,17 @@ const deleteShop = (id) => new Promise((resolve, reject) => {
     .catch((error) => reject(error));
 });
 
-const updateShop = (shop) => new Promise((resolve, reject) => {
+const updateShop = (shop, id) => new Promise((resolve, reject) => {
   const shopObj = {
-    id: shop.id,
     user: shop.user,
     name: shop.name,
     location: shop.location,
     website: shop.website,
     photo: shop.photo,
   };
-  fetch(`${clientCredentials.databaseURL}/shops/${shop.id}`, {
+  fetch(`${clientCredentials.databaseURL}/shops/${id}`, {
     method: 'PUT',
-    headers: { 'Content-Type': 'application' },
+    headers: { 'Content-Type': 'application/json' },
     body: JSON.stringify(shopObj),
   })
     .then((response) => resolve(response))

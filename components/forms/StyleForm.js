@@ -6,7 +6,6 @@ import { createStyle, updateStyle } from '../../api/styleData';
 // import { useAuth } from '../../utils/context/authContext';
 
 const initialState = {
-  id: 1,
   name: '',
 };
 
@@ -18,7 +17,6 @@ const StyleForm = ({ styleObj }) => {
 
   useEffect(() => {
     if (styleObj.id) setCurrentStyle(styleObj);
-    console.warn(styleObj.id);
   }, [styleObj]);
 
   const handleChange = (e) => {
@@ -31,21 +29,15 @@ const StyleForm = ({ styleObj }) => {
 
   const handleSubmit = (e) => {
     e.preventDefault();
+    const payload = {
+      name: currentStyle.name,
+    };
     if (styleObj.id) {
-      updateStyle(currentStyle, styleObj.id).then(() => router.push('/style'));
+      updateStyle(payload, styleObj.id).then(() => router.push('/style'));
     } else {
-      createStyle(currentStyle).then(() => router.push('/style'));
+      createStyle(payload).then(() => router.push('/style'));
     }
   };
-
-  const getAndSet = () => {
-    if (styleObj.id) {
-      setCurrentStyle(styleObj);
-    }
-  };
-  useEffect(() => {
-    getAndSet();
-  }, [styleObj]);
 
   return (
     <>
@@ -53,7 +45,7 @@ const StyleForm = ({ styleObj }) => {
         <Form.Group className="mb-3">
           <h2 className="text-white mt-5">{styleObj.id ? 'Update' : 'Create'} Style</h2>
           <Form.Label className="text-white">Style Name</Form.Label>
-          <Form.Control name="name" required value={setCurrentStyle.name} onChange={handleChange} />
+          <Form.Control name="name" required value={currentStyle.name} onChange={handleChange} />
         </Form.Group>
         <Button type="submit">{styleObj.id ? 'Update' : 'Create'} Style</Button>
       </Form>

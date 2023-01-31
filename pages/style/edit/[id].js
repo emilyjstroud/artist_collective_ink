@@ -13,6 +13,6 @@ export default function EditStyle() {
   }, [id]);
 
   return (
-    <StyleForm obj={editItem} />
+    <StyleForm styleObj={editItem} />
   );
 }

@@ -14,9 +14,8 @@ const initialState = {
   location: '',
   instagram: '',
   artworkPhoto: '',
-  shopId: null,
-  styleId: null,
-  id: null,
+  // shopId: null,
+  // styleId: null,
 };
 // id: null,
 // artist: {(
@@ -81,8 +80,8 @@ function ArtistForm({ artistObj }) {
       updateArtist(artistFormInput, artistObj.id)
         .then(() => router.push(`/artist/${artistObj.id}`));
     } else {
-      // const payload = { ...artistFormInput, uid: user.uid };
-      createArtist(artistFormInput).then(() => {
+      const payload = { ...artistFormInput };
+      createArtist(payload).then(() => {
         router.push('/artist');
       });
     }
@@ -128,7 +127,7 @@ function ArtistForm({ artistObj }) {
           }
         </Form.Select>
       </FloatingLabel>
-      <FloatingLabel controlId="floatingSelect" label="Shop">
+      <FloatingLabel controlId="floatingSelect" label="Style">
         <Form.Select
           aria-label="Style"
           name="styleId"
