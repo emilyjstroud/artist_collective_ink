@@ -14,10 +14,8 @@ const initialState = {
   location: '',
   instagram: '',
   artworkPhoto: '',
-  // shopId: null,
-  // styleId: null,
+  // user: 1,
 };
-// id: null,
 // artist: {(
 // name: '',
 // location: '',
@@ -40,17 +38,19 @@ function ArtistForm({ artistObj }) {
 
   // const { user } = useAuth();
 
-  // useEffect(() => {
-  //   getShops(user.uid).then(setShops);
-  //   if (artistObj.id) setArtistFormInput(artistObj);
-  // }, [artistObj, user]);
-
-  // Re-Factored
   useEffect(() => {
     getShops().then(setShops);
     getAllStyles().then(setStyles);
-    if (artistObj.id) setArtistFormInput();
+    if (artistObj.id) setArtistFormInput(artistObj);
+    console.warn(artistObj);
   }, [artistObj]);
+
+  // Re-Factored
+  // useEffect(() => {
+  //   getShops().then(setShops);
+  //   getAllStyles().then(setStyles);
+  //   if (artistObj.id) setArtistFormInput();
+  // }, [artistObj]);
 
   const handleChange = (e) => {
     const { name, value } = e.target;
@@ -76,12 +76,21 @@ function ArtistForm({ artistObj }) {
   // Re-Factored
   const handleSubmit = (e) => {
     e.preventDefault();
+    const payload = {
+      // user: artistFormInput.user,
+      name: artistFormInput.name,
+      location: artistFormInput.location,
+      instagram: artistFormInput.instagram,
+      artworkPhoto: artistFormInput.artworkPhoto,
+      // styleId: artistFormInput.styleId,
+      // shopId: artistFormInput.shopId,
+    };
     if (artistObj.id) {
-      updateArtist(artistFormInput, artistObj.id)
-        .then(() => router.push(`/artist/${artistObj.id}`));
+      updateArtist(payload, artistObj.id)
+        .then(() => router.push('/artist'));
     } else {
-      const payload = { ...artistFormInput };
-      createArtist(payload).then(() => {
+      // const payload = { ...artistFormInput };
+      createArtist(artistFormInput).then(() => {
         router.push('/artist');
       });
     }
@@ -100,7 +109,7 @@ function ArtistForm({ artistObj }) {
       <FloatingLabel controlId="floatingInput1" label="Artist Instagram" className="mb-3">
         <Form.Control type="text" placeholder="Artist's Instagram" name="instagram" value={artistFormInput.instagram} onChange={handleChange} required />
       </FloatingLabel>
-      <FloatingLabel controlId="floatingInput2" label="Artist Image" className="mb-3">
+      <FloatingLabel controlId="floatingInput2" label="Artist Artwork" className="mb-3">
         <Form.Control type="url" placeholder="Enter an image url" name="artworkPhoto" value={artistFormInput.artworkPhoto} onChange={handleChange} required />
       </FloatingLabel>
       <FloatingLabel controlId="floatingSelect" label="Shop">
@@ -172,24 +181,23 @@ function ArtistForm({ artistObj }) {
 
 // Re-Factored
 ArtistForm.propTypes = {
-  user: PropTypes.shape({
-    uid: PropTypes.string,
-  }).isRequired,
+  // user: PropTypes.shape({
+  //   uid: PropTypes.string,
+  // }).isRequired,
+
   artistObj: PropTypes.shape({
     id: PropTypes.number,
-    artist: PropTypes.shape({
-      name: PropTypes.string,
-      location: PropTypes.string,
-      // shopName: PropTypes.string,
-      instagram: PropTypes.string,
-      artworkPhoto: PropTypes.string,
-      shopId: PropTypes.number,
-      styleId: PropTypes.number,
-      id: PropTypes.number,
-    }),
+    // artist: PropTypes.shape({
     name: PropTypes.string,
-    photo: PropTypes.string,
     location: PropTypes.string,
+    instagram: PropTypes.string,
+    artworkPhoto: PropTypes.string,
+    shopId: PropTypes.number,
+    styleId: PropTypes.number,
+    // }),
+    // name: PropTypes.string,
+    // photo: PropTypes.string,
+    // location: PropTypes.string,
   }),
 };
 

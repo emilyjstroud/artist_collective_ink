@@ -14,6 +14,6 @@ export default function EditArtist() {
   }, [id]);
 
   return (
-    <ArtistForm obj={editItem} />
+    <ArtistForm artistObj={editItem} />
   );
 }

@@ -63,22 +63,6 @@ function ShopForm({ user, shopObj }) {
     }
   };
 
-  // const getAndSet = () => {
-  //   if (shopObj.id) {
-  //     setShopFormInput(shopObj);
-  //   }
-  // const workAround = 'user';
-  // setShopFormInput((prevState) => ({
-  //   ...prevState,
-  //   [workAround]: user.uid,
-  // }));
-  // };
-
-  // useEffect(() => {
-  //   getAndSet();
-  //   console.warn(shopObj.id);
-  // }, [shopObj]);
-
   return (
     <Form onSubmit={handleSubmit}>
       <title>Artist Collective Ink</title>

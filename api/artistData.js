@@ -83,17 +83,16 @@ const deleteArtist = (id) => new Promise((resolve, reject) => {
     .catch((error) => reject(error));
 });
 
-const updateArtist = (artist) => new Promise((resolve, reject) => {
+const updateArtist = (artist, id) => new Promise((resolve, reject) => {
   const artistObj = {
-    id: artist.id,
-    shop: artist.shop_id,
-    style: artist.style_id,
+    shop: artist.shopId,
+    style: artist.styleId,
     name: artist.name,
     location: artist.location,
     instagram: artist.instagram,
     artworkPhoto: artist.artwork_photo,
   };
-  fetch(`${clientCredentials.databaseURL}/artists/${artist.id}`, {
+  fetch(`${clientCredentials.databaseURL}/artists/${id}`, {
     method: 'PUT',
     headers: { 'Content-Type': 'application/json' },
     body: JSON.stringify(artistObj),
