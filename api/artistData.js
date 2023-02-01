@@ -90,7 +90,7 @@ const updateArtist = (artist, id) => new Promise((resolve, reject) => {
     name: artist.name,
     location: artist.location,
     instagram: artist.instagram,
-    artworkPhoto: artist.artwork_photo,
+    artworkPhoto: artist.artworkPhoto,
   };
   fetch(`${clientCredentials.databaseURL}/artists/${id}`, {
     method: 'PUT',
@@ -115,12 +115,12 @@ const getSingleArtist = (id) => new Promise((resolve, reject) => {
     .then((data) => {
       resolve({
         id: data.id,
-        shop: data.shop_id,
-        style: data.style_id,
+        shop: data.shopId,
+        style: data.styleId,
         name: data.name,
         location: data.location,
         instagram: data.instagram,
-        artworkPhoto: data.artwork_photo,
+        artworkPhoto: data.artworkPhoto,
       });
     })
     .catch((error) => reject(error));
