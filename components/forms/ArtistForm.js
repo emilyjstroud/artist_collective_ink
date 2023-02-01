@@ -16,18 +16,6 @@ const initialState = {
   artworkPhoto: '',
   // user: 1,
 };
-// artist: {(
-// name: '',
-// location: '',
-// instagram: '',
-// artworkPhoto: '',
-// shopId: null,
-// id: null,
-// }),
-// name: '',
-// location: '',
-// photo: '',
-// };
 
 function ArtistForm({ artistObj }) {
   const [artistFormInput, setArtistFormInput] = useState(initialState);
@@ -41,8 +29,9 @@ function ArtistForm({ artistObj }) {
   useEffect(() => {
     getShops().then(setShops);
     getAllStyles().then(setStyles);
-    if (artistObj.id) setArtistFormInput(artistObj);
-    console.warn(artistObj);
+    if (artistObj.id) {
+      setArtistFormInput({ ...artistObj, shopId: artistObj.shop.id, styleId: artistObj.style.id });
+    }
   }, [artistObj]);
 
   // Re-Factored
@@ -82,9 +71,10 @@ function ArtistForm({ artistObj }) {
       location: artistFormInput.location,
       instagram: artistFormInput.instagram,
       artworkPhoto: artistFormInput.artworkPhoto,
-      // styleId: artistFormInput.styleId,
-      // shopId: artistFormInput.shopId,
+      styleId: artistFormInput.styleId,
+      shopId: artistFormInput.shopId,
     };
+    // console.warn(payload);
     if (artistObj.id) {
       updateArtist(payload, artistObj.id)
         .then(() => router.push('/artist'));
@@ -116,7 +106,6 @@ function ArtistForm({ artistObj }) {
         <Form.Select
           aria-label="Shop"
           name="shopId"
-          // defaultValue={shopId}
           onChange={handleChange}
           className="mb-3"
           value={artistFormInput.shopId}
@@ -128,7 +117,6 @@ function ArtistForm({ artistObj }) {
               <option
                 key={shop.id}
                 value={shop.id}
-                // defaultValue={shop.id === artistFormInput.shopId}
               >
                 {shop.name}
               </option>
@@ -140,7 +128,6 @@ function ArtistForm({ artistObj }) {
         <Form.Select
           aria-label="Style"
           name="styleId"
-          // defaultValue={shopId}
           onChange={handleChange}
           className="mb-3"
           value={artistFormInput.styleId}
@@ -152,7 +139,6 @@ function ArtistForm({ artistObj }) {
               <option
                 key={style.id}
                 value={style.id}
-                // defaultValue={shop.id === artistFormInput.shopId}
               >
                 {style.name}
               </option>
@@ -187,17 +173,16 @@ ArtistForm.propTypes = {
 
   artistObj: PropTypes.shape({
     id: PropTypes.number,
-    // artist: PropTypes.shape({
     name: PropTypes.string,
     location: PropTypes.string,
     instagram: PropTypes.string,
     artworkPhoto: PropTypes.string,
-    shopId: PropTypes.number,
-    styleId: PropTypes.number,
-    // }),
-    // name: PropTypes.string,
-    // photo: PropTypes.string,
-    // location: PropTypes.string,
+    shop: PropTypes.shape({
+      id: PropTypes.number,
+    }),
+    style: PropTypes.shape({
+      id: PropTypes.number,
+    }),
   }),
 };
 

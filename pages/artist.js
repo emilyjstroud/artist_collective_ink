@@ -17,6 +17,7 @@ function ArtistPage() {
     getArtistsWithShop(user.uid).then((artistArray) => {
       setArtists(artistArray);
       setFilteredArtists(artistArray);
+      // console.warn(artistArray);
     });
   };
 

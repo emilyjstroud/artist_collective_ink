@@ -110,6 +110,7 @@ const getSingleShop = (id) => new Promise((resolve, reject) => {
   fetch(`${clientCredentials.databaseURL}/shops/${id}`)
     .then((response) => response.json())
     .then((data) => {
+      console.warn(data);
       resolve({
         id: data.id,
         user: data.user,
@@ -122,9 +123,16 @@ const getSingleShop = (id) => new Promise((resolve, reject) => {
     .catch((error) => reject(error));
 });
 
+// const getShopArtists = (id) => new Promise((resolve, reject) => {
+//   fetch(`${clientCredentials.databaseURL}/artists?orderBy="shopId"&equalTo="${id}"`)
+//     .then((response) => resolve(response.json()))
+//     .catch((error) => reject(error));
+// });
+
 const getShopArtists = (id) => new Promise((resolve, reject) => {
-  fetch(`${clientCredentials.databaseURL}/artists?orderBy="shopId"&equalTo="${id}"`)
-    .then((response) => resolve(response.json()))
+  fetch(`${clientCredentials.databaseURL}/artists?shop="${id}"`)
+    .then((response) => response.json())
+    .then(resolve)
     .catch((error) => reject(error));
 });
 

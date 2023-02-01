@@ -20,8 +20,8 @@ const getSingleStyle = (id) => new Promise((resolve, reject) => {
     .catch((error) => reject(error));
 });
 
-const getStyleByArtistId = (ArtistId) => new Promise((resolve, reject) => {
-  fetch(`${clientCredentials.databaseURL}/styles/${ArtistId}`)
+const getStyleByArtistId = (artistId) => new Promise((resolve, reject) => {
+  fetch(`${clientCredentials.databaseURL}/styles/${artistId}`)
     .then((response) => resolve(response.json()))
     .catch((error) => reject(error));
 });

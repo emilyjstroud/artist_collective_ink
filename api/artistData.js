@@ -113,15 +113,8 @@ const getSingleArtist = (id) => new Promise((resolve, reject) => {
     // .then((response) => resolve(response.json()))
     .then((response) => response.json())
     .then((data) => {
-      resolve({
-        id: data.id,
-        shop: data.shopId,
-        style: data.styleId,
-        name: data.name,
-        location: data.location,
-        instagram: data.instagram,
-        artworkPhoto: data.artworkPhoto,
-      });
+      console.warn(data);
+      resolve(data);
     })
     .catch((error) => reject(error));
 });

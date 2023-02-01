@@ -1,5 +1,5 @@
 import { clientCredentials } from '../utils/client';
-import { getSingleShop } from './shopData';
+import { getSingleShop, getShopArtists } from './shopData';
 // import { deleteArtist, getArtists } from './artistData';
 // import { getShopArtists, deleteShop } from './shopData';
 
@@ -72,12 +72,12 @@ const viewArtistDetails = (id) => new Promise((resolve, reject) => {
     .catch(reject);
 });
 
-const viewShopDetails = (id) => new Promise((resolve, reject) => {
-  fetch(`${clientCredentials.databaseURL}/shops/${id}/`)
-    .then((response) => response.json())
-    .then(resolve)
-    .catch(reject);
-});
+// const viewShopDetails = (id) => new Promise((resolve, reject) => {
+//   fetch(`${clientCredentials.databaseURL}/shops/${id}/`)
+//     .then((response) => response.json())
+//     .then(resolve)
+//     .catch(reject);
+// });
 
 const deleteShopArtists = (shopId) => new Promise((resolve, reject) => {
   fetch(`${clientCredentials.databaseURL}/artists/${shopId}`, {
@@ -85,6 +85,13 @@ const deleteShopArtists = (shopId) => new Promise((resolve, reject) => {
   })
     .then(resolve)
     .catch(reject);
+});
+
+const viewShopDetails = (shopId) => new Promise((resolve, reject) => {
+  Promise.all([getSingleShop(shopId), getShopArtists(shopId)])
+    .then(([shopObj, shopArtistArray]) => {
+      resolve({ ...shopObj, artists: shopArtistArray });
+    }).catch((error) => reject(error));
 });
 
 export {
