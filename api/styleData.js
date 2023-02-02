@@ -20,8 +20,8 @@ const getSingleStyle = (id) => new Promise((resolve, reject) => {
     .catch((error) => reject(error));
 });
 
-const getStyleByArtistId = (artistId) => new Promise((resolve, reject) => {
-  fetch(`${clientCredentials.databaseURL}/styles/${artistId}`)
+const getArtistStyles = (id) => new Promise((resolve, reject) => {
+  fetch(`${clientCredentials.databaseURL}/styles?artist=${id}`)
     .then((response) => resolve(response.json()))
     .catch((error) => reject(error));
 });
@@ -67,7 +67,7 @@ const deleteStyle = (id) => new Promise((resolve, reject) => {
 export {
   getAllStyles,
   getSingleStyle,
-  getStyleByArtistId,
+  getArtistStyles,
   createStyle,
   updateStyle,
   deleteStyle,

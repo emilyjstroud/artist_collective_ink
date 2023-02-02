@@ -1,5 +1,7 @@
 import { clientCredentials } from '../utils/client';
+import { getSingleArtist } from './artistData';
 import { getSingleShop, getShopArtists } from './shopData';
+// import { getArtistStyles } from './styleData';
 // import { deleteArtist, getArtists } from './artistData';
 // import { getShopArtists, deleteShop } from './shopData';
 
@@ -55,6 +57,13 @@ const getArtistsWithShop = (shopId) => new Promise((resolve, reject) => {
     .catch(reject);
 });
 
+const getArtistsWithStyle = (styleId) => new Promise((resolve, reject) => {
+  fetch(`${clientCredentials.databaseURL}/artists?styleId=${styleId}`)
+    .then((response) => response.json())
+    .then(resolve)
+    .catch(reject);
+});
+
 const getShopDetailsWithArtist = (shopId) => new Promise((resolve, reject) => {
   getSingleShop(shopId)
     .then((shopData) => {
@@ -65,12 +74,12 @@ const getShopDetailsWithArtist = (shopId) => new Promise((resolve, reject) => {
     }).catch((error) => reject(error));
 });
 
-const viewArtistDetails = (id) => new Promise((resolve, reject) => {
-  fetch(`${clientCredentials.databaseURL}/artists/${id}/`)
-    .then((response) => response.json())
-    .then(resolve)
-    .catch(reject);
-});
+// const viewArtistDetails = (id) => new Promise((resolve, reject) => {
+//   fetch(`${clientCredentials.databaseURL}/artists/${id}/`)
+//     .then((response) => response.json())
+//     .then(resolve)
+//     .catch(reject);
+// });
 
 // const viewShopDetails = (id) => new Promise((resolve, reject) => {
 //   fetch(`${clientCredentials.databaseURL}/shops/${id}/`)
@@ -87,18 +96,57 @@ const deleteShopArtists = (shopId) => new Promise((resolve, reject) => {
     .catch(reject);
 });
 
+// const viewShopDetails = (shopId) => new Promise((resolve, reject) => {
+//   Promise.all([getSingleShop(shopId), getShopArtists(shopId)])
+//     .then(([shopObj, shopArtistArray]) => {
+//       resolve({ ...shopObj, artists: shopArtistArray });
+//     }).catch((error) => reject(error));
+// });
+
 const viewShopDetails = (shopId) => new Promise((resolve, reject) => {
-  Promise.all([getSingleShop(shopId), getShopArtists(shopId)])
-    .then(([shopObj, shopArtistArray]) => {
-      resolve({ ...shopObj, artists: shopArtistArray });
+  getSingleShop(shopId)
+    .then((shopData) => {
+      getShopArtists(shopId)
+        .then((artistData) => {
+          resolve({ shopData, artistData });
+        });
     }).catch((error) => reject(error));
 });
+
+const viewArtistDetails = (artistId) => new Promise((resolve, reject) => {
+  getSingleArtist(artistId)
+    .then((artistData) => {
+      getArtistsWithShop(artistId);
+      getArtistsWithStyle(artistId)
+        .then((shopData) => {
+          resolve({ artistData, shopData });
+        });
+    }).catch((error) => reject(error));
+});
+
+// const viewArtistDetails = (artistId) => new Promise((resolve, reject) => {
+//   getSingleArtist(artistId)
+//     .then((artistObj) => {
+//       getSingleShop(artistObj.shopId)
+//         .then((shopObj) => {
+//           resolve({ shopObj, ...artistObj });
+//         });
+//     }).catch((error) => reject(error));
+// });
+
+// const viewArtistDetails = (artistId) => new Promise((resolve, reject) => {
+//   Promise.all([getSingleArtist(artistId), getArtistStyles(artistId)])
+//     .then(([artistObj, artistArray]) => {
+//       resolve({ ...artistObj, style: artistArray });
+//     }).catch((error) => reject(error));
+// });
 
 export {
   viewArtistDetails,
   viewShopDetails,
   deleteShopArtists,
   getArtistsWithShop,
+  getArtistsWithStyle,
   getShopDetailsWithArtist,
   // getArtistsByName,
 };

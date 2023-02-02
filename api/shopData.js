@@ -110,15 +110,16 @@ const getSingleShop = (id) => new Promise((resolve, reject) => {
   fetch(`${clientCredentials.databaseURL}/shops/${id}`)
     .then((response) => response.json())
     .then((data) => {
-      console.warn(data);
-      resolve({
-        id: data.id,
-        user: data.user,
-        name: data.name,
-        location: data.location,
-        website: data.website,
-        photo: data.photo,
-      });
+      // console.warn(data);
+      // resolve({
+      //   id: data.id,
+      //   user: data.user,
+      //   name: data.name,
+      //   location: data.location,
+      //   website: data.website,
+      //   photo: data.photo,
+      // });
+      resolve(data);
     })
     .catch((error) => reject(error));
 });
@@ -130,7 +131,7 @@ const getSingleShop = (id) => new Promise((resolve, reject) => {
 // });
 
 const getShopArtists = (id) => new Promise((resolve, reject) => {
-  fetch(`${clientCredentials.databaseURL}/artists?shop="${id}"`)
+  fetch(`${clientCredentials.databaseURL}/artists?shop=${id}`)
     .then((response) => response.json())
     .then(resolve)
     .catch((error) => reject(error));
