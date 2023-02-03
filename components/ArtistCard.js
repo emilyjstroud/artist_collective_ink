@@ -17,7 +17,7 @@ function ArtistCard({ artistObj, onUpdate }) {
   };
 
   useEffect(() => {
-    getSingleShop(artistObj.shopId).then(setShop);
+    getSingleShop(artistObj.shop.id).then(setShop);
   }, []);
 
   return (
@@ -48,7 +48,9 @@ ArtistCard.propTypes = {
     location: PropTypes.string,
     instagram: PropTypes.string,
     artworkPhoto: PropTypes.string,
-    shopId: PropTypes.number,
+    shop: PropTypes.shape({
+      id: PropTypes.number,
+    }),
     id: PropTypes.number,
   }).isRequired,
   onUpdate: PropTypes.func.isRequired,
