@@ -96,6 +96,14 @@ const deleteShopArtists = (shopId) => new Promise((resolve, reject) => {
     .catch(reject);
 });
 
+const deleteArtistStyles = (styleId) => new Promise((resolve, reject) => {
+  fetch(`${clientCredentials.databaseURL}/artists/${styleId}`, {
+    method: 'DELETE',
+  })
+    .then(resolve)
+    .catch(reject);
+});
+
 // const viewShopDetails = (shopId) => new Promise((resolve, reject) => {
 //   Promise.all([getSingleShop(shopId), getShopArtists(shopId)])
 //     .then(([shopObj, shopArtistArray]) => {
@@ -118,8 +126,8 @@ const viewArtistDetails = (artistId) => new Promise((resolve, reject) => {
     .then((artistData) => {
       getArtistsWithShop(artistId);
       getArtistsWithStyle(artistId)
-        .then((shopData) => {
-          resolve({ artistData, shopData });
+        .then((styleData) => {
+          resolve({ artistData, styleData });
         });
     }).catch((error) => reject(error));
 });
@@ -148,5 +156,6 @@ export {
   getArtistsWithShop,
   getArtistsWithStyle,
   getShopDetailsWithArtist,
+  deleteArtistStyles,
   // getArtistsByName,
 };

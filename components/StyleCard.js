@@ -1,9 +1,9 @@
-import React, { useEffect } from 'react';
+import React from 'react';
 import PropTypes from 'prop-types';
 import Card from 'react-bootstrap/Card';
 import Button from 'react-bootstrap/Button';
 import Link from 'next/link';
-import { deleteStyle, getAllStyles } from '../api/styleData';
+import { deleteStyle } from '../api/styleData';
 
 export default function StyleCard({
   id, name, onUpdate,
@@ -11,14 +11,8 @@ export default function StyleCard({
   const deleteThisStyle = () => {
     if (window.confirm(`Delete ${name}?`)) {
       deleteStyle(id).then(() => onUpdate());
-      window.location.reload();
     }
   };
-
-  useEffect(() => {
-    getAllStyles();
-  }, []);
-  // console.warn(styleObj);
 
   return (
     <>

@@ -4,15 +4,35 @@ import { Button } from 'react-bootstrap';
 import { useAuth } from '../utils/context/authContext';
 import { getAllStyles } from '../api/styleData';
 import StyleCard from '../components/StyleCard';
+// import { getUser } from '../api/userData';
 
 function Styles() {
   const [styles, setStyles] = useState([]);
+
   const router = useRouter();
+
   const { user } = useAuth();
 
+  // const getUserStyles = () => {
+  //   getUser(user.id).then((response) => setStyles(response.styles));
+  // };
+
+  // useEffect(() => {
+  //   getAllStyles(user.uid).then((setStyles));
+  //   getUserStyles();
+  // }, []);
+
+  const getUserStyles = () => {
+    getAllStyles(user.id).then((response) => {
+      setStyles(response);
+    });
+  };
+
   useEffect(() => {
-    getAllStyles(user.uid).then((setStyles));
-  }, []);
+    // getAllStyles().then((setStyles));
+    // getUserStyles();
+    getUserStyles();
+  }, [user]);
 
   return (
     <>
@@ -31,7 +51,7 @@ function Styles() {
             <StyleCard
               id={style.id}
               name={style.name}
-              onUpdate={getAllStyles}
+              onUpdate={getUserStyles}
             />
           </section>
         ))}

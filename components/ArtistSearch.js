@@ -30,7 +30,7 @@ function ArtistSearchBar({ artists, setFilteredArtists }) {
 
 ArtistSearchBar.propTypes = {
   artists: PropTypes.arrayOf(PropTypes.shape({
-    artistName: PropTypes.string,
+    name: PropTypes.string,
   })).isRequired,
   setFilteredArtists: PropTypes.func.isRequired,
 };

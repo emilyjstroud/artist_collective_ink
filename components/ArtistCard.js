@@ -51,6 +51,9 @@ ArtistCard.propTypes = {
     shop: PropTypes.shape({
       id: PropTypes.number,
     }),
+    style: PropTypes.shape({
+      id: PropTypes.number,
+    }),
     id: PropTypes.number,
   }).isRequired,
   onUpdate: PropTypes.func.isRequired,

@@ -6,6 +6,7 @@ import Button from 'react-bootstrap/Button';
 import { getArtistsWithStyle, viewArtistDetails } from '../../api/mergedData';
 // import { getSingleShop } from '../../api/shopData';
 import StyleCard from '../../components/StyleCard';
+import { getArtistStyles } from '../../api/styleData';
 
 export default function ViewArtist() {
   // const [artistDetails, setArtistDetails] = useState({});
@@ -30,6 +31,7 @@ export default function ViewArtist() {
   console.warn(styleData);
   useEffect(() => {
     getArtistDetails();
+    getArtistStyles(id).then(setStyleData);
   }, [id]);
 
   return (
@@ -42,7 +44,7 @@ export default function ViewArtist() {
           {artistData.name}
         </h5>
         <p>Location: {artistData.location}</p>
-        {/* <p>Style: {artistData.styleObj.name}</p> */}
+        {/* <p>Style: {styleData.style.id}</p> */}
         <p>Instagram: {artistData.instagram}</p>
         <hr />
         <Link href="/artist" passHref>
@@ -51,7 +53,7 @@ export default function ViewArtist() {
         <br />
       </div>
       { styleData.map((style) => (
-        <StyleCard key={style.id} styleObj={style} onUpdate={getArtistsWithStyle} />
+        <StyleCard key={style.id} name={style.name} styleObj={style} onUpdate={getArtistsWithStyle} />
       ))}
     </div>
   );
