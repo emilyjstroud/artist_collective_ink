@@ -21,7 +21,7 @@ const getSingleStyle = (id) => new Promise((resolve, reject) => {
 });
 
 const getArtistStyles = (id) => new Promise((resolve, reject) => {
-  fetch(`${clientCredentials.databaseURL}/styles?artist=${id}`)
+  fetch(`${clientCredentials.databaseURL}/artist_styles?artist=${id}`)
     .then((response) => resolve(response.json()))
     .catch((error) => reject(error));
 });

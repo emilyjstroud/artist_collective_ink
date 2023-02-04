@@ -3,7 +3,7 @@ import { useRouter } from 'next/router';
 import React, { useEffect, useState } from 'react';
 import Link from 'next/link';
 import Button from 'react-bootstrap/Button';
-import { getArtistsWithStyle, viewArtistDetails } from '../../api/mergedData';
+import { viewArtistDetails } from '../../api/mergedData';
 // import { getSingleShop } from '../../api/shopData';
 import StyleCard from '../../components/StyleCard';
 import { getArtistStyles } from '../../api/styleData';
@@ -25,7 +25,6 @@ export default function ViewArtist() {
   const getArtistDetails = () => {
     viewArtistDetails(id).then((data) => {
       setArtistData(data?.artistData || {});
-      setStyleData(data?.styleData || []);
     });
   };
   console.warn(styleData);
@@ -53,7 +52,7 @@ export default function ViewArtist() {
         <br />
       </div>
       { styleData.map((style) => (
-        <StyleCard key={style.id} name={style.name} styleObj={style} onUpdate={getArtistsWithStyle} />
+        <StyleCard key={style.id} name={style.style.name} styleObj={style} onUpdate={getArtistDetails} />
       ))}
     </div>
   );
