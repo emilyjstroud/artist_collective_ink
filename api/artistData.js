@@ -54,15 +54,7 @@ const getArtists = () => new Promise((resolve, reject) => {
     .then(reject);
 });
 
-const createArtist = (data) => new Promise((resolve, reject) => {
-  const artistObj = {
-    shop: data.shopId,
-    style: data.styleId,
-    name: data.name,
-    location: data.location,
-    instagram: data.instagram,
-    artworkPhoto: data.artworkPhoto,
-  };
+const createArtist = (artistObj) => new Promise((resolve, reject) => {
   fetch(`${clientCredentials.databaseURL}/artists`, {
     method: 'POST',
     body: JSON.stringify(artistObj),
@@ -84,18 +76,10 @@ const deleteArtist = (id) => new Promise((resolve, reject) => {
 });
 
 const updateArtist = (artist, id) => new Promise((resolve, reject) => {
-  const artistObj = {
-    shop: artist.shopId,
-    style: artist.styleId,
-    name: artist.name,
-    location: artist.location,
-    instagram: artist.instagram,
-    artworkPhoto: artist.artworkPhoto,
-  };
   fetch(`${clientCredentials.databaseURL}/artists/${id}`, {
     method: 'PUT',
     headers: { 'Content-Type': 'application/json' },
-    body: JSON.stringify(artistObj),
+    body: JSON.stringify(artist),
   })
     .then((response) => resolve(response))
     .catch((error) => reject(error));

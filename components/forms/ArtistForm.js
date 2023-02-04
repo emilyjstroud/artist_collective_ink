@@ -5,32 +5,59 @@ import FloatingLabel from 'react-bootstrap/FloatingLabel';
 import Button from 'react-bootstrap/Button';
 import PropTypes from 'prop-types';
 // import { useAuth } from '../../utils/context/authContext';
+// import MultiSelect from 'react-multiple-select-dropdown-lite';
+// import AsyncCreatable from 'react-select/async-creatable';
+import AsyncSelect from 'react-select/async';
 import { createArtist, updateArtist } from '../../api/artistData';
 import { getShops } from '../../api/shopData';
-import { getAllStyles } from '../../api/styleData';
+import { getAllStyles, getArtistStyles } from '../../api/styleData';
+// import  'react-multiple-select-dropdown-lite/dist/index.css'
 
 const initialState = {
   name: '',
   location: '',
   instagram: '',
   artworkPhoto: '',
-  // user: 1,
+  styles: [],
 };
 
 function ArtistForm({ artistObj }) {
   const [artistFormInput, setArtistFormInput] = useState(initialState);
   const [shops, setShops] = useState([]);
-  const [styles, setStyles] = useState([]);
-
   const router = useRouter();
 
   // const { user } = useAuth();
 
+  const styleOptions = () => new Promise((resolve, reject) => {
+    getAllStyles().then((stylesArray) => {
+      const options = stylesArray.map((style) => (
+        {
+          value: style.id,
+          label: style.name,
+        }
+      ));
+      resolve(options);
+    })
+      .catch(reject);
+  });
+
+  const handleStyleSelect = (selected) => {
+    setArtistFormInput((prevState) => ({
+      ...prevState,
+      styles: selected,
+    }));
+  };
+
   useEffect(() => {
     getShops().then(setShops);
-    getAllStyles().then(setStyles);
     if (artistObj.id) {
-      setArtistFormInput({ ...artistObj, shopId: artistObj.shop.id, styleId: artistObj.style.id });
+      getArtistStyles(artistObj.id).then((stylesArray) => {
+        const stylesSelect = stylesArray.map((style) => ({
+          value: style.style.id,
+          label: style.style.name,
+        }));
+        setArtistFormInput({ ...artistObj, shopId: artistObj.shop.id, styles: stylesSelect });
+      });
     }
   }, [artistObj]);
 
@@ -47,6 +74,7 @@ function ArtistForm({ artistObj }) {
       ...prevState,
       [name]: value,
     }));
+    console.warn(artistFormInput);
   };
 
   // const handleSubmit = (e) => {
@@ -66,21 +94,18 @@ function ArtistForm({ artistObj }) {
   const handleSubmit = (e) => {
     e.preventDefault();
     const payload = {
-      // user: artistFormInput.user,
       name: artistFormInput.name,
       location: artistFormInput.location,
       instagram: artistFormInput.instagram,
       artworkPhoto: artistFormInput.artworkPhoto,
-      styleId: artistFormInput.styleId,
-      shopId: artistFormInput.shopId,
+      styles: artistFormInput.styles.map((style) => style.value),
+      shop: Number(artistFormInput.shopId),
     };
-    // console.warn(payload);
     if (artistObj.id) {
       updateArtist(payload, artistObj.id)
         .then(() => router.push('/artist'));
     } else {
-      // const payload = { ...artistFormInput };
-      createArtist(artistFormInput).then(() => {
+      createArtist(payload).then(() => {
         router.push('/artist');
       });
     }
@@ -124,7 +149,7 @@ function ArtistForm({ artistObj }) {
           }
         </Form.Select>
       </FloatingLabel>
-      <FloatingLabel controlId="floatingSelect" label="Style">
+      {/* <FloatingLabel controlId="floatingSelect" label="Style">
         <Form.Select
           aria-label="Style"
           name="styleId"
@@ -145,7 +170,21 @@ function ArtistForm({ artistObj }) {
             ))
           }
         </Form.Select>
-      </FloatingLabel>
+      </FloatingLabel> */}
+
+      <div>
+        <Form.Label>Styles</Form.Label>
+        <AsyncSelect
+          classNamePrefix="select"
+          backspaceRemovesValue
+          isClearable
+          isMulti
+          onChange={handleStyleSelect}
+          value={artistFormInput.styles}
+          loadOptions={styleOptions}
+          defaultOptions
+        />
+      </div>
 
       <Button type="submit">{artistObj.id ? 'Update' : 'Create'} Artist</Button>
     </Form>
